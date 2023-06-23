@@ -1,0 +1,10 @@
+{
+  "domain": "pastrx.auth0.com",
+  "clientId": "PPbavNOoSonFfE50CqVZUwCd8dk9T2BJ",
+  "authorizationParams": {
+    "audience": "https://apis-explorer.appspot.com/apis-explorer/?base=https://pastrx-qa.appspot.com/_ah/api#p/pastAPI/v2.40/"
+  },
+  "apiUri": "http://localhost:3001",
+  "appUri": "http://localhost:4200",
+  "errorPath": "/error"
+}
