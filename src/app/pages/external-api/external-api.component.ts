@@ -26,4 +26,13 @@ export class ExternalApiComponent {
       error: () => this.hasApiError = true,
     });
   }
+  getPatientNamesApi() {
+    this.api.getPatientNames().subscribe({
+      next: (res) => {
+        this.hasApiError = false;
+        this.responseJson = JSON.stringify(res, null, 2).trim();
+      },
+      error: () => this.hasApiError = true,
+    });
+  }
 }

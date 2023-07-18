@@ -19,13 +19,13 @@ export const environment = {
     domain,
     clientId,
     authorizationParams: {
-      ...(audience && audience !== 'YOUR_API_IDENTIFIER' ? { audience } : null),
+      ...(audience && audience !== 'QA_API' ? { audience } : null),
       redirect_uri: window.location.origin,
     },
     errorPath,
   },
   httpInterceptor: {
-    allowedList: [`${apiUri}/*`],
+    allowedList: [`${apiUri}/*`,'https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/','https://apis-explorer.appspot.com/'],
   },
 };
 
