@@ -11,13 +11,21 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { FooterComponent } from './common/footer/footer.component';
 import { HomeContentComponent } from './components/home-content/home-content.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ExternalApiComponent } from './pages/external-api/external-api.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
+import { AuthInterceptorInterceptor } from '../app/auth-interceptor.interceptor';
+import { LoginComponent } from './auth/login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
+import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
+import { HeaderComponent } from './common/header/header.component';
+import {MatIconModule} from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +37,10 @@ import { environment as env } from '../environments/environment';
     HomeContentComponent,
     LoadingComponent,
     ExternalApiComponent,
-    ErrorComponent
+    ErrorComponent,
+    LoginComponent,
+    UserDashboardComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -41,14 +52,23 @@ import { environment as env } from '../environments/environment';
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {
-        ...env.httpInterceptor,
+        ...env.httpInterceptor
+        
       },
     }),
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHttpInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorInterceptor,
       multi: true,
     },
     {

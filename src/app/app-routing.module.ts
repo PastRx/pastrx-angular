@@ -5,11 +5,18 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ExternalApiComponent } from './pages/external-api/external-api.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { AuthGuard } from '@auth0/auth0-angular';
+import { LoginComponent } from './auth/login/login.component';
+import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'user-dashboard',
+    component: UserDashboardComponent,
     canActivate: [AuthGuard],
   },
   {
@@ -23,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: HomeComponent,
+    component: LoginComponent,
     pathMatch: 'full',
   },
 ];
