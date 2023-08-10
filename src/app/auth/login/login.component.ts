@@ -14,6 +14,9 @@ export class LoginComponent {
     @Inject(DOCUMENT) private doc: Document
   ) {}
   loginWithRedirect() {
-    this.auth.loginWithRedirect();
+    this.auth.loginWithRedirect({
+      appState: { target: '/user-dashboard' }
+    });
   }
+  
 }

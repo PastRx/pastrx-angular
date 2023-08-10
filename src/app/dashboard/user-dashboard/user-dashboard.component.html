@@ -1,2 +1,84 @@
 <app-header></app-header>
+<div class="row m-0 headcnt">
+    <div class="col-6 pt-3 ps-4">
+        Patient Name
+    </div>
+    <div class="col-1 pt-3">
+        Appt Time
+    </div>
+    <div class="col-1 pt-3">
+        current MME/Day
+    </div>
+    <div class="col-1 pt-3">
+        maximum MME/Day
+    </div>
+    <div class="col-3">
+        <div class="row m-0">
+            <div class="col-2">
+                High Dose
+            </div>
+            <div class="col-2">
+                Other Prov
+            </div>
+            <div class="col-2">
+                Multi Prov
+            </div>
+            <div class="col-2">
+                W/F Gap
+            </div>
+            <div class="col-2">
+                Data Alert
+            </div>
+            <div class="col-2">
+                No PMP
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row m-0" *ngFor="let ptn of patntrespns">
+    <div class="col-6 py-1 ps-4">
+        <div class="row">
+            <img src="../../../assets/silhouette2.jpg" alt="User" class="imgcnt p-0">
+            <div class="col">
+                <h4 class="mb-0 fw-medium">{{ptn.patientLast}}</h4>
+                <h6 class="mb-0 fw-normal">{{ptn.patientFirst}}</h6>
+                <small class="datecnt">{{ptn.patientDOBString}}</small>
+            </div>            
+        </div>
+       
+    </div>
+    <div class="col-1 pt-3">
+        <h3>{{ptn.appointmentTime}}</h3>  
+    </div>
+    <div class="col-1 pt-3">
+       
+    </div>
+    <div class="col-1 pt-3">
+       
+    </div>
+    <div class="col-3">
+        <div class="row m-0">
+            <div class="col-2">
+                <mat-icon aria-hidden="false" class="sicon mx-auto" fontIcon="arrow_upward"></mat-icon>
+            </div>
+            <div class="col-2">
+                <mat-icon aria-hidden="false" class="sicon mx-auto" fontIcon="person_apron"></mat-icon>
+            </div>
+            <div class="col-2">
+                <mat-icon aria-hidden="false" class="sicon mx-auto" fontIcon="groups"></mat-icon>
+            </div>
+            <div class="col-2">
+                <mat-icon aria-hidden="false" class="sicon mx-auto" fontIcon="alarm_on"></mat-icon>
+            </div>
+            <div class="col-2">
+                <mat-icon aria-hidden="false" class="sicon mx-auto" fontIcon="warning"></mat-icon>
+            </div>
+            <div class="col-2">
+                <mat-icon aria-hidden="false" class="sicon mx-auto" fontIcon="file_open"></mat-icon>
+            </div>
+        </div>
+    </div>
+    <hr class="mb-0 p-0">
+</div>
 <app-footer></app-footer>

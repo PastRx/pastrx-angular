@@ -5,7 +5,7 @@
     <div class="col-8 text-right text-white">
         <span *ngIf="auth.user$ | async as user" class="me-5">Logged in as  {{ user.name }}</span>
         <img alt="PastRx" src="../../../assets/white-logo-80.png" class="logocntbtm ms-5">
-        <button mat-raised-button class="px-1 ms-2 rounded-0" style="height: 20px;">Sign Out</button>
+        <button mat-raised-button class="px-1 ms-2 rounded-0" (click)="logout()" style="height: 20px;">Sign Out</button>
        
 
     </div>

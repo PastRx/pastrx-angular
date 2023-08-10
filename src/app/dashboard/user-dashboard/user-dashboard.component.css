@@ -1,0 +1,22 @@
+.headcnt{
+    box-sizing: border-box;
+    height: 55px;
+    background: #dedede;
+    color: black;
+    border-bottom: 1px solid #adadad;
+    font-weight: 400;
+    font-size: 18px;
+}
+.imgcnt{
+    width: 65px;
+}
+.datecnt{
+    font-size: 0.7rem;
+}
+.sicon{
+    font-size: 2.5rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    margin-top: 1.2rem;
+    color: gray;
+}
