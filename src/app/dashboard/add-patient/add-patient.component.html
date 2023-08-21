@@ -1,0 +1,123 @@
+<app-header></app-header>
+<div class="card m-2 rounded-0">
+    <div class="card-body p-0 rounded-0 bg-smoke">
+        <h5 class="card-title bg-gray text-white p-2 rounded-0">PMP Request</h5>
+        <div class="col">
+            <mat-checkbox class="example-margin" [(ngModel)]="isQuickSearch">Quick Search for Practice
+                Patients:</mat-checkbox>
+        </div>
+        <div class="col" [hidden]="!isQuickSearch">
+            <!-- <mat-form-field class="w-25">
+                <mat-label>Number</mat-label>
+                <input type="text"
+                       placeholder="Pick one"
+                       aria-label="Number"
+                       matInput
+                       [matAutocomplete]="auto">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (selectionChange)="updateFields()">
+                  <mat-option *ngFor="let pts of resgetPatientNames | async" [value]="pts">
+                    {{pts}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Number</mat-label>
+                <input type="text"
+                       placeholder="Pick one"
+                       aria-label="Number"
+                       matInput
+                       [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let option of resgetPatientNames" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field> -->
+            <mat-form-field class="w-25">
+                <mat-label>Search</mat-label>
+                <mat-select (selectionChange)="updateFields()" [(ngModel)]="selptnt">
+                    <mat-option value="{{pts}}" *ngFor="let pts of resgetPatientNames">{{pts}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <hr>
+        <h5 class="ps-3">Required Fields:</h5>
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <mat-label>Last Name</mat-label>
+                <input matInput [(ngModel)]="request.lastName">
+            </mat-form-field>
+            <mat-form-field class="mx-5">
+                <mat-label>First Name</mat-label>
+                <input matInput [(ngModel)]="request.firstName">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Patient DOB</mat-label>
+                <input matInput [(ngModel)]="request.dobString">
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <mat-label>Appointment Date (MM/DD/YYYY)</mat-label>
+                <input matInput [(ngModel)]="request.appointmentDate">
+            </mat-form-field>
+            <mat-form-field class="mx-5">
+                <mat-label>Appointment Time</mat-label>
+                <input matInput [(ngModel)]="request.appointmentTime">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Provider</mat-label>
+                <mat-select (selectionChange)="selectedProviderChange()" [(ngModel)]="selectedProvider">
+                    <mat-option [value]="pres" *ngFor="let pres of reslistPrescribers">{{pres.lastName}},{{pres.firstName}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <mat-label>Start Date of Report</mat-label>
+                <input matInput [(ngModel)]="request.startDate">
+            </mat-form-field>
+            <mat-form-field class="mx-5">
+                <mat-label>End Date of Report</mat-label>
+                <input matInput [(ngModel)]="request.endDate">
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <mat-label>Patient Zip</mat-label>
+                <input matInput [(ngModel)]="request.zipString">
+            </mat-form-field>
+        </div>
+        <hr>
+        <h5 class="ps-3">Optional Fields:</h5>
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <mat-label>Street Address</mat-label>
+                <input matInput [(ngModel)]="request.address">
+            </mat-form-field>
+            <mat-form-field class="mx-5">
+                <mat-label>City</mat-label>
+                <input matInput [(ngModel)]="request.city">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>State</mat-label>
+                <input matInput [(ngModel)]="request.state">
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <mat-label>Patient Phone</mat-label>
+                <input matInput [(ngModel)]="request.phoneString">
+            </mat-form-field>
+            <mat-form-field class="mx-5">
+                <mat-label>SSN</mat-label>
+                <input matInput [(ngModel)]="request.ssn">
+            </mat-form-field>
+        </div>
+        <div class="col pb-3">
+            <button mat-raised-button color="warn" class="col-2 me-4" routerLink="/user-dashboard">Cancel</button>
+            <button mat-raised-button color="primary" (click)="submitRequest()" class="col-2">Submit</button>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

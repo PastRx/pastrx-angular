@@ -2,6 +2,7 @@
     bottom: 0px;
     position: absolute;
     width: 100%;
+    z-index: 1;
 }
 .logocntbtm{
     width: 72px;

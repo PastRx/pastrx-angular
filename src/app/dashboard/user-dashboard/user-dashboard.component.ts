@@ -3,6 +3,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { ApiService } from 'src/app/api.service';
 declare var PASTRX: any;
 declare var gapi: any;
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -11,7 +12,7 @@ declare var gapi: any;
 })
 export class UserDashboardComponent {
   patntrespns = [];
-  constructor(public auth: AuthService, private api: ApiService,) {
+  constructor(public auth: AuthService, private api: ApiService,private datePipe: DatePipe  ) {
    
     console.log("test", this.auth);
     this.auth.user$.subscribe(result => {
@@ -20,7 +21,7 @@ export class UserDashboardComponent {
 
     this.api.listPASTEncounters(
       {
-        'targetDate': "08/08/2023",
+        'targetDate': this.datePipe.transform(Date.now(),'MM/dd/YYYY'),
         'masquerade': PASTRX.masquerade
       }
     ).subscribe({

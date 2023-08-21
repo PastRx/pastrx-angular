@@ -11,15 +11,23 @@ export class ApiService {
 
   ping$(): Observable<any> {
     console.log(config.apiUri);
-    return this.http.get(`${config.apiUri}/api/external`);
+    return this.http.get('${config.apiUri}/api/external');
+  }
+  listPrescribers(): Observable<any> {
+    console.log(config.apiUri);
+    return this.http.get('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/listPrescribers');
   }
   getPatientNames(): Observable<any> {
     console.log(config.apiUri);
     const body=null;
-    return this.http.post(`https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/getPatientNames`, body);
+    return this.http.post('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/getPatientNames', body);
   }
   listPASTEncounters(parms:any): Observable<any> {
-    console.log(config.apiUri);    
-    return this.http.get(`https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/listPASTEncounters?targetDate=08%2F08%2F2023`, parms);
+    console.log(parms);    
+    return this.http.get('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/listPASTEncounters?targetDate='+ parms.targetDate, parms);
+  }
+  getPMPData(parms:any): Observable<any> {
+    console.log(parms);    
+    return this.http.get('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/getpmpdata?'+ 'userMode=NORMAL&firstName='+'CLARENCE' + '&lastName='+ parms.lastName +'&dobString='+ parms.dobString+'&providerId='+parms.providerId+'&startDateString='+'08%2F21%2F2022'+'&appointmentDateString='+'08%2F21%2F2023'+'&zipString='+parms.zipString+'&appointmentTimeString='+parms.appointmentTimeString+'&endDateString='+'08%2F21%2F2023', parms);
   }
 }

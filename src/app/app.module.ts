@@ -12,6 +12,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FooterComponent } from './common/footer/footer.component';
+import { FormsModule } from '@angular/forms';
 import { HomeContentComponent } from './components/home-content/home-content.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ExternalApiComponent } from './pages/external-api/external-api.component';
@@ -25,6 +26,12 @@ import {MatButtonModule} from '@angular/material/button';
 import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
 import { HeaderComponent } from './common/header/header.component';
 import {MatIconModule} from '@angular/material/icon';
+import { AddPatientComponent } from './dashboard/add-patient/add-patient.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import { DatePipe } from '@angular/common';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -40,13 +47,15 @@ import {MatIconModule} from '@angular/material/icon';
     ErrorComponent,
     LoginComponent,
     UserDashboardComponent,
-    HeaderComponent
+    HeaderComponent,
+    AddPatientComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    FormsModule,
     HighlightModule,
     FontAwesomeModule,
     AuthModule.forRoot({
@@ -58,9 +67,14 @@ import {MatIconModule} from '@angular/material/icon';
     }),
     BrowserAnimationsModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatInputModule,
+    MatAutocompleteModule
   ],
   providers: [
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHttpInterceptor,

@@ -20,3 +20,9 @@ body {
 .bg-gray{
     background: #4e4e4e;
 }
+.bg-smoke{
+    background-color: whitesmoke;
+}
+label {
+    margin-bottom: 0px !important;
+}

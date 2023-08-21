@@ -7,6 +7,7 @@ import { ErrorComponent } from './pages/error/error.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { LoginComponent } from './auth/login/login.component';
 import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
+import { AddPatientComponent } from './dashboard/add-patient/add-patient.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'error',
     component: ErrorComponent,
+  },
+  {
+    path: 'add-patient',
+    component: AddPatientComponent,
   },
   {
     path: '',
