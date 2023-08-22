@@ -10,6 +10,7 @@ declare var PASTRX: any;
   styleUrls: ['./add-patient.component.css']
 })
 export class AddPatientComponent {
+  appTitle = "Submit PMP Request";
   resgetPatientNames: any;
   isQuickSearch = false;
   reslistPrescribers: any;
