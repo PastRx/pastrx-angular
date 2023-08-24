@@ -11,6 +11,7 @@ declare var PASTRX: any;
 })
 export class AddPatientComponent {
   appTitle = "Submit PMP Request";
+  oneYearFromNow = new Date(new Date().setFullYear(new Date().getFullYear() - 1)); 
   resgetPatientNames: any;
   isQuickSearch = false;
   reslistPrescribers: any;
@@ -24,7 +25,7 @@ export class AddPatientComponent {
     ssn: '',
     appointmentDate: this.datePipe.transform(Date.now(),'MM/dd/YYYY'),
     appointmentTime: this.datePipe.transform(Date.now(),'shortTime'),
-    startDate: this.datePipe.transform(Date.now(),'MM/dd/YYYY'),
+    startDate: this.datePipe.transform(this.oneYearFromNow,'MM/dd/YYYY'),
     endDate: this.datePipe.transform(Date.now(),'MM/dd/YYYY'),
     address: '',
     city: '',

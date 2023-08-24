@@ -28,6 +28,6 @@ export class ApiService {
   }
   getPMPData(parms:any): Observable<any> {
     console.log(parms);    
-    return this.http.get('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/getpmpdata?'+ 'userMode=NORMAL&firstName='+'CLARENCE' + '&lastName='+ parms.lastName +'&dobString='+ parms.dobString+'&providerId='+parms.providerId+'&startDateString='+'08%2F21%2F2022'+'&appointmentDateString='+'08%2F21%2F2023'+'&zipString='+parms.zipString+'&appointmentTimeString='+parms.appointmentTimeString+'&endDateString='+'08%2F21%2F2023', parms);
+    return this.http.get('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/getpmpdata?'+ 'userMode=NORMAL&firstName='+'CLARENCE' + '&lastName='+ parms.lastName +'&dobString='+ parms.dobString+'&providerId='+parms.providerId+'&startDateString='+parms.startDateString+'&appointmentDateString='+parms.appointmentDateString+'&zipString='+parms.zipString+'&appointmentTimeString='+parms.appointmentTimeString+'&endDateString='+parms.endDateString, parms);
   }
 }
