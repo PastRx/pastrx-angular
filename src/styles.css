@@ -18,11 +18,14 @@ body {
     color: #35368e !important;
 }
 .bg-gray{
-    background: #4e4e4e;
+    background: #4e4e4e !important;
 }
 .bg-smoke{
     background-color: whitesmoke;
 }
 label {
     margin-bottom: 0px !important;
+}
+.fw-500{
+    font-weight: 500 !important;
 }

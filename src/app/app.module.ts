@@ -32,6 +32,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import { DatePipe } from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { UserDetailsComponent } from './dashboard/user-details/user-details.component';
+import { GoogleMapsModule } from '@angular/google-maps'
 
 
 @NgModule({
@@ -48,7 +50,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     LoginComponent,
     UserDashboardComponent,
     HeaderComponent,
-    AddPatientComponent
+    AddPatientComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatCheckboxModule,
     MatSelectModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    GoogleMapsModule
   ],
   providers: [
     DatePipe,

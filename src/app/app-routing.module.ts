@@ -8,6 +8,7 @@ import { AuthGuard } from '@auth0/auth0-angular';
 import { LoginComponent } from './auth/login/login.component';
 import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
 import { AddPatientComponent } from './dashboard/add-patient/add-patient.component';
+import { UserDetailsComponent } from './dashboard/user-details/user-details.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
   {
     path: 'user-dashboard',
     component: UserDashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'user-details',
+    component: UserDetailsComponent,
     canActivate: [AuthGuard],
   },
   {
