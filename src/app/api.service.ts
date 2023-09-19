@@ -40,4 +40,15 @@ export class ApiService {
     var cprms = this.cleanprms(parms);  
     return this.http.get('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/getpmpdata?'+ new URLSearchParams(cprms));
   }
+  addUser(parms:any): Observable<any> {
+    console.log(parms);  
+    var cprms = this.cleanprms(parms);
+    const body=null;
+    return this.http.post('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/addUser?'+ new URLSearchParams(cprms),body);
+  }
+  getUserList(parms:any): Observable<any> {
+    console.log(parms);  
+    const body=null;
+    return this.http.post('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/getOurUsers', body);
+  }
 }

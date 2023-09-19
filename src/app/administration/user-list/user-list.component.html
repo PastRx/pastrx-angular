@@ -1,0 +1,65 @@
+<div class="card m-2 rounded-0" [hidden]="isAddUser">
+    <div class="m-2">
+        <h5 style="text-align: center;">Providers Page</h5>
+    </div>
+    <div>
+        <div class="m-2">This is where you can add and edit user information. To create a new
+            user, click “Add New User” and you’ll be taken to a page where you can enter the same information for the
+            provider as you just did for yourself. To edit a current user, simply click on their name. When finished,
+            click “NEXT” to complete practice setup.</div>
+        <div class="col p-2">
+            <button mat-raised-button class="col-2 me-4 activeButtonsList" (click)="addUserRequest()">ADD NEW
+                USER</button>
+            <button mat-raised-button class="col-2 me-4 buttonBlue" routerLink="/user-list">UPLOAD USER LIST</button>
+        </div>
+        <div class="card-body p-2 rounded-0 bg-smoke">
+            <h5 class="card-title bg-gray text-white p-2 rounded-0">Practice Settings: Our Users</h5>
+            <div class="row m-0 py-3">
+                <div class="col-5 p-0">
+                    <mat-checkbox class="example-margin" [(ngModel)]="isInactiveUsers">Show Inactive
+                        Users</mat-checkbox>
+                    <mat-checkbox class="example-margin" [(ngModel)]="isOnlyInactiveUsers">Show Only Inactive
+                        Users</mat-checkbox>
+                    <mat-checkbox class="example-margin" [(ngModel)]="isOnlyRemovedUsers">Show Only Removed
+                        Users</mat-checkbox>
+                </div>
+                <div class="col text-right p-0">
+                    <button mat-raised-button class="me-2 px-2 activeButtonsList" (click)="addUserRequest()">SET USERS
+                        TO INACTIVE</button>
+                    <button mat-raised-button class="me-2 px-2 activeButtonsList" routerLink="/user-list">SET USERS TO
+                        ACTIVE</button>
+                    <button mat-raised-button class="me-2 px-2 activeButtonsList" (click)="addUserRequest()">MAKE
+                        ADMIN</button>
+                    <button mat-raised-button class="me-2 px-2 activeButtonsList" routerLink="/user-list">REVOKE
+                        ADMIN</button>
+                    <button mat-raised-button class="me-2 px-2 activeButtonsList" routerLink="/user-list">REMOVE
+                        ADMIN</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="m-2" *ngFor="let usr of userList">
+            <div class="prescriberLine row">
+                <div class="prescriberBox">
+                    <div class="card w-100 buttonBlue">
+                        <div class="card-body">
+                            <mat-checkbox class="example-margin"></mat-checkbox>
+                            <span>{{usr.lastName}}</span>, <span class="me-5">{{usr.firstName}}</span>
+                            <span>email: </span><span style="font-weight: bold;">{{usr.email}}</span>
+                            <hr class="hr1">
+                            <span style="font-weight: bold; color: lime" class="me-5 textFont">Prescriber</span>
+                            <span class="me-5 textFont" style="font-style: italic;">Login Allowed</span>
+                            <span [hidden]="!usr.active" class="textFont" style="color:green;font-style: italic;">Active</span>
+                            <span [hidden]="usr.active" class="textFont" style="color:red;font-style: italic;">Inactive</span>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div [hidden]="!isAddUser">
+    <app-add-user (outputSetAddUser)="stIsAddUser($event)"></app-add-user>
+</div>

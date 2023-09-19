@@ -34,7 +34,10 @@ import { DatePipe } from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { UserDetailsComponent } from './dashboard/user-details/user-details.component';
 import { GoogleMapsModule } from '@angular/google-maps'
-
+import {AddUserComponent} from './administration/add-user/add-user.component';
+import {UserListComponent} from './administration/user-list/user-list.component';
+import { AdminDashboardComponent } from './administration/admin-dashboard/admin-dashboard.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,10 @@ import { GoogleMapsModule } from '@angular/google-maps'
     UserDashboardComponent,
     HeaderComponent,
     AddPatientComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    AdminDashboardComponent,
+    AddUserComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +80,7 @@ import { GoogleMapsModule } from '@angular/google-maps'
     MatCheckboxModule,
     MatSelectModule,
     MatInputModule,
+    MatTabsModule,
     MatAutocompleteModule,
     GoogleMapsModule
   ],

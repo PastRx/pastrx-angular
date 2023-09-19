@@ -1,0 +1,105 @@
+
+<div class="card m-2 rounded-0">
+    <div style="margin-top: 15px;">
+        <h5 style="text-align: center;">Adding A User</h5>
+    </div>
+    <div>
+    <div style="margin-top: 15px;" class="p-2">Fill in the New User's Data. When you are finished, click Submit to continue or Cancel to return WITHOUT saving.</div>
+    <div class="col" style="margin-top: 20px;">
+        <button mat-raised-button class="col-2 me-4 activeButtonsList" (click)="setIsAddUser()">Cancel</button>
+    </div>
+</div>
+    <hr>
+    <div class="card-body p-0 rounded-0 bg-smoke">
+        <h5 class="card-title bg-gray text-white p-2 rounded-0">Add User</h5>
+        <div class="col">
+            <mat-label><span style="color: blue;">Blue</span> items are required inputs.</mat-label>
+        </div>
+        <hr>
+        <h5 class="ps-3" style="font-style: italic;margin-bottom: -12px;margin-top: -15px;">User Info</h5>
+        <hr>
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <mat-label>Last Name</mat-label>
+                <input matInput [(ngModel)]="request.lastName" required>
+            </mat-form-field>
+            <mat-form-field class="mx-5">
+                <mat-label>First Name</mat-label>
+                <input matInput [(ngModel)]="request.firstName" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Email Address</mat-label>
+                <input matInput [(ngModel)]="request.email">
+                <!-- <input matInput [(ngModel)]="request.email" [pattern]="emailPattern" #requestEmail="ngModel" required > -->
+            </mat-form-field>
+            <!-- <div *ngIf="requestEmail.errors"> 
+                <mat-error *ngIf="requestEmail.errors.required"> 
+                    Email is required.
+                </mat-error>			   
+                <mat-error *ngIf="requestEmail.errors.pattern"> 
+                    Please enter valid email address.
+                </mat-error>	
+             </div>  -->
+        </div>
+        <hr>
+        <h5 class="ps-3" style="font-style: italic;margin-bottom: -12px;margin-top: -15px;">Credentials</h5>
+        <hr>
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <mat-label>Prescriber NPI</mat-label>
+                <input matInput [(ngModel)]="request.prescriberNPI">
+            </mat-form-field>
+            <mat-form-field class="mx-5">
+                <mat-label>Prescriber DEA</mat-label>
+                <input matInput [(ngModel)]="request.prescriberDEANumber">
+            </mat-form-field>
+            <mat-form-field class="mx-5">
+                <mat-label>Prescriber State ID</mat-label>
+                <input matInput [(ngModel)]="request.prescriberStateId">
+            </mat-form-field>
+            <mat-form-field class="mx-5">
+                <mat-label>NCPDP ID</mat-label>
+                <input matInput [(ngModel)]="request.prescriberNCPDP">
+            </mat-form-field>
+            </div>
+            <div class="col">
+            <mat-form-field class="example-full-width">
+                <mat-label>Primary Speciality</mat-label>
+                <mat-select (selectionChange)="updateFields()" [(ngModel)]="selpsp">
+                    <mat-option value="{{pts.Value}}" *ngFor="let pts of PrimarySpeciality">{{pts.Display}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <hr>
+        <h5 class="ps-3" style="font-style: italic;margin-bottom: -12px;margin-top: -15px;">Permissions</h5>
+        <hr>
+        <div class="col">
+            <div class="col">
+                <mat-checkbox class="example-margin" [(ngModel)]="isLoginAllowed">Login Allowed</mat-checkbox>
+            </div>
+            <div class="col">
+                <mat-checkbox class="example-margin" [(ngModel)]="isUserActive">User Active</mat-checkbox>
+            </div>
+            <div class="col">
+                <mat-checkbox class="example-margin" [(ngModel)]="isPracticeAdmin">Practice Admin</mat-checkbox>
+            </div>
+        </div>
+        <hr>
+        <h5 class="ps-3" style="font-style: italic;margin-bottom: -12px;margin-top: -15px;">EHR ID</h5><p class="ps-5" style="margin-top: -25px;margin-left: 50px;">These are used for communications to and from the EHR for integrated practices</p>
+        <hr>
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <mat-label>Add New EHR ID</mat-label>
+                <input matInput [(ngModel)]="request.newEHRID">
+            </mat-form-field>
+            <mat-form-field class="mx-5">
+                <mat-label>Add New EHR ID Type</mat-label>
+                <input matInput [(ngModel)]="request.newEHRIDType">
+            </mat-form-field>
+        </div>      
+        <div class="col pb-3">
+            <button mat-raised-button color="primary" (click)="submitRequest()" class="col-2">Submit</button>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
