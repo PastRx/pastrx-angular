@@ -9,6 +9,15 @@ import config from '../../auth_config.json';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
+  cleanprms(parms){
+    Object.keys(parms).forEach(key => {
+      if (parms[key] == null) {
+        delete parms[key];
+      }
+    });
+    return parms;
+  }
+
   ping$(): Observable<any> {
     console.log(config.apiUri);
     return this.http.get('${config.apiUri}/api/external');
@@ -27,7 +36,8 @@ export class ApiService {
     return this.http.get('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/listPASTEncounters?targetDate='+ parms.targetDate, parms);
   }
   getPMPData(parms:any): Observable<any> {
-    console.log(parms);    
-    return this.http.get('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/getpmpdata?'+ 'userMode=NORMAL&firstName='+'CLARENCE' + '&lastName='+ parms.lastName +'&dobString='+ parms.dobString+'&providerId='+parms.providerId+'&startDateString='+parms.startDateString+'&appointmentDateString='+parms.appointmentDateString+'&zipString='+parms.zipString+'&appointmentTimeString='+parms.appointmentTimeString+'&endDateString='+parms.endDateString, parms);
+    console.log(parms);  
+    var cprms = this.cleanprms(parms);  
+    return this.http.get('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/getpmpdata?'+ new URLSearchParams(cprms));
   }
 }
