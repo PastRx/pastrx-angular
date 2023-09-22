@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent {
+  showMaps = false;
   appTitle = "Patients Details";
   center: google.maps.LatLngLiteral = {
     lat: 22.2736308,
