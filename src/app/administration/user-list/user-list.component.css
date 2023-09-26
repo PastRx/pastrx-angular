@@ -1,0 +1,19 @@
+.activeButtonsList{
+    background-color: #d0a8ad !important;
+}
+
+.buttonBlue{
+    background-color: #4d9fbb !important;
+}
+
+.hr1{
+    margin: 0.5rem 0 !important;
+    color: inherit;
+    border: 0;
+    border-top: var(--bs-border-width) solid;
+    opacity: .25;
+}
+
+.textFont{
+    font-size: 14px !important;
+}

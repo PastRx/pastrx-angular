@@ -9,6 +9,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
 import { AddPatientComponent } from './dashboard/add-patient/add-patient.component';
 import { UserDetailsComponent } from './dashboard/user-details/user-details.component';
+import {AdminDashboardComponent} from './administration/admin-dashboard/admin-dashboard.component';
+import {AddUserComponent} from './administration/add-user/add-user.component';
+import {UserListComponent} from './administration/user-list/user-list.component';
 import { PracticeSettingsComponent } from './admin/practice-settings/practice-settings.component';
 
 const routes: Routes = [
@@ -39,6 +42,18 @@ const routes: Routes = [
   {
     path: 'add-patient',
     component: AddPatientComponent,
+  },
+  {
+    path: 'admin-dashboard',
+    component: AdminDashboardComponent,
+  },
+  {
+    path: 'user-list',
+    component: UserListComponent,
+  },
+  {
+    path: 'add-user',
+    component: AddUserComponent,
   },
   {
     path: '',
