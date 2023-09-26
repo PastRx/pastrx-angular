@@ -1,0 +1,83 @@
+<app-header [inputTitle]="appTitle"></app-header>
+<div class="card m-2 rounded-0">
+    <div class="card-body p-0 rounded-0 bg-smoke">
+        <h5 class="card-title bg-gray text-white p-2 rounded-0">Practice Settings</h5>
+        <div class="col" style="background-color:lightskyblue">
+            <h6 class="card-title p-2 rounded-0">Analysis Settings</h6>
+        
+            <mat-form-field class="example-full-width" (click)="hintMME()">
+                <mat-label>MME/Day Alert Threshold</mat-label>
+                <input matInput [(ngModel)]="MMEThreshold" required>
+            </mat-form-field>
+
+      <!--      
+        </div>
+        <div class="col">  -->
+            <mat-form-field class="example-full-width" (click)="hintAlert()">
+                <mat-label>Alert Trigger Range</mat-label>
+                <input matInput [(ngModel)]="alertTrigger" required>
+            </mat-form-field>
+
+        <!--   
+        </div>
+
+        <div class="col">  -->
+            <mat-form-field class="example-full-width" (click)="hintGap()">
+                <mat-label>White/Fill Gap Range</mat-label>
+                <input matInput [(ngModel)]="whiteRange" required>
+            </mat-form-field>
+
+           <p> </p> 
+        </div>
+
+        <div style="background-color:lightskyblue">
+            <h6 class="card-title p-2 rounded-0">Info Panel</h6>
+            <p>{{hint}}</p>
+        </div>
+        <br>
+        <div style="background-color:lightskyblue">
+         <div class="col" >
+            <h6 class="card-title p-2 rounded-0">Practice Address</h6>
+            <p>Enter the Address of your practice</p>
+            <mat-form-field class="example-full-width">
+                <mat-label>Line1</mat-label>
+                <input matInput [(ngModel)]="line1" required>
+            </mat-form-field>
+
+                   </div>
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <mat-label>Line2</mat-label>
+                <input matInput [(ngModel)]="line2" >
+            </mat-form-field>
+
+            </div>
+
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <mat-label>City</mat-label>
+                <input matInput [(ngModel)]="city" required>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>State</mat-label>
+                <input matInput [(ngModel)]="state" required>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Zip</mat-label>
+                <input matInput [(ngModel)]="zip" required>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>PMP State</mat-label>
+                <input matInput [(ngModel)]="whiteRange" required>
+            </mat-form-field>
+            Enter the default state for PMP requests.
+
+            </div>
+            </div>
+    </div>
+
+    <button mat-raised-button style="background-color: lightcoral" (click)="update()">UPDATE</button>
+</div>                    

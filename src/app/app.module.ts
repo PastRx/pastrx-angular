@@ -33,7 +33,8 @@ import {MatInputModule} from '@angular/material/input';
 import { DatePipe } from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { UserDetailsComponent } from './dashboard/user-details/user-details.component';
-import { GoogleMapsModule } from '@angular/google-maps'
+import { GoogleMapsModule } from '@angular/google-maps';
+import { PracticeSettingsComponent } from './admin/practice-settings/practice-settings.component'
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { GoogleMapsModule } from '@angular/google-maps'
     UserDashboardComponent,
     HeaderComponent,
     AddPatientComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    PracticeSettingsComponent
   ],
   imports: [
     BrowserModule,

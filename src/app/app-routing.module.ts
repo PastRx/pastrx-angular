@@ -9,6 +9,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
 import { AddPatientComponent } from './dashboard/add-patient/add-patient.component';
 import { UserDetailsComponent } from './dashboard/user-details/user-details.component';
+import { PracticeSettingsComponent } from './admin/practice-settings/practice-settings.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,11 @@ const routes: Routes = [
     path: '',
     component: LoginComponent,
     pathMatch: 'full',
+  },
+  {
+    path: 'practice-settings',
+    component: PracticeSettingsComponent,
+    
   },
 ];
 
