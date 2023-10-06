@@ -13,7 +13,7 @@
       <!--      
         </div>
         <div class="col">  -->
-            <mat-form-field class="example-full-width" (focus)="hintAlert()">
+            <mat-form-field class="example-full-width" (click)="hintAlert()">
                 <mat-label>Alert Trigger Range</mat-label>
                 <input matInput [(ngModel)]="practice.alertDaysBack" required>
             </mat-form-field>
