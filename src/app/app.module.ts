@@ -38,6 +38,7 @@ import {AddUserComponent} from './administration/add-user/add-user.component';
 import {UserListComponent} from './administration/user-list/user-list.component';
 import { AdminDashboardComponent } from './administration/admin-dashboard/admin-dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { UserUpdateComponent } from './administration/user-update/user-update.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     AdminDashboardComponent,
     AddUserComponent,
     UserListComponent,
+    UserUpdateComponent
   ],
   imports: [
     BrowserModule,

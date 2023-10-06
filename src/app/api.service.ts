@@ -51,4 +51,15 @@ export class ApiService {
     const body=null;
     return this.http.post('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/getOurUsers', body);
   }
+  getUserData(parms:any): Observable<any> {
+    console.log(parms);  
+    var cprms = this.cleanprms(parms);  
+    return this.http.get('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/getUserData?' + new URLSearchParams(cprms));
+  }
+
+  getEHRIDsForUser(parms:any): Observable<any> {
+    console.log(parms);  
+    var cprms = this.cleanprms(parms);  
+    return this.http.get('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/getEHRIDsForUser?' + new URLSearchParams(cprms));
+  }
 }

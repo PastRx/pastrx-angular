@@ -1,28 +1,32 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { ApiService } from 'src/app/api.service';
+import { Component ,Inject} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ThisReceiver } from '@angular/compiler';
 import { DatePipe } from '@angular/common';
+import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
-declare var PASTRX: any;
+//import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
+declare var PASTRX: any;
+declare var gapi: any;
 interface specialties {
   Value: string;
   Display: string;
 }
-
 @Component({
-  selector: 'app-add-user',
-  templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.css']
+  selector: 'app-user-update',
+  templateUrl: './user-update.component.html',
+  styleUrls: ['./user-update.component.css']
 })
-export class AddUserComponent {
-  @Output() outputSetAddUser = new EventEmitter<boolean>();
+export class UserUpdateComponent {
   emailPattern = "[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+(\.[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+)*@([a-zA-Z0-9_][-a-zA-Z0-9_]*(\.[-a-zA-Z0-9_]+)*\.([cC][oO][mM]))(:[0-9]{1,5})?";
   resgetPrimarySpeciality: null;
-  isLoginAllowed = false;
-  isUserActive = false;
-  isPracticeAdmin = false;
+
+  isNoPMPReports = false;
   selpsp: any;
   request = {
+    loginAllowed: false,
+    active: false,
+    practiceAdmin: false,
     firstName: '',
     lastName: '',
     email: '',
@@ -32,50 +36,58 @@ export class AddUserComponent {
     prescriberNCPDP: '',
     newEHRID: '',
     newEHRIDType: '',
+    baselineRequests: 0,
+    serviceDayPerWeek: 0,
+    specialty: ''
   };
+
   constructor(private api: ApiService, private datePipe: DatePipe, private router: Router) { }
-  updateFields() { }
-  submitRequest() {
-    this.api.addUser(
+  ngOnInit() {
+    this.api.getUserData(
       {
-        email: this.request.email,
-        firstName: this.request.firstName,
-        lastName: this.request.lastName,
-        prescriberNPI: this.request.prescriberNPI,
-        prescriberDEANumber: this.request.prescriberDEANumber,
-        prescriberNCPDP: this.request.prescriberNCPDP,
-        prescriberStateId: this.request.prescriberStateId,
-        loginAllowed: this.isLoginAllowed,
-        active: this.isUserActive,
-        practiceAdmin: this.isPracticeAdmin,
-        specialty: this.selpsp,
-        ehrIdList: this.getEhrIdList(),
-        masquerade: PASTRX.masquerade
-      }).subscribe({
-        next: (resp) => {
-          console.log(resp);
-        },
-        error: (err) => console.log(err),
-      });
-  }
-
-  setIsAddUser() {
-    this.outputSetAddUser.emit(false);
-  }
-
-  getEhrIdList() {
-    var idList = [];
-    if (this.request.newEHRID != "") {
-      if (this.request.newEHRIDType != undefined && this.request.newEHRIDType != null && this.request.newEHRIDType != "") {
-        idList.push(this.request.newEHRIDType + ":" + this.request.newEHRID);
-      } else {
-        idList.push(this.request.newEHRID);
+        'masquerade': PASTRX.masquerade
       }
-    }
-    if (idList.length == 0) {
-      return null;
-    }
-    return idList;
+    ).subscribe({
+      next: (res) => {
+        console.log('getUserData------------>' + res)
+        this.request = res;
+        this.getEhrIds(res.id);
+        if (this.request.specialty == undefined) {
+          this.request.specialty = 'novalue';
+          this.selpsp = "";
+        } else {
+          this.selpsp = this.request.specialty;
+        }
+      },
+      error: (e) => console.log(e),
+    });
+  }
+
+  openDialogUpdateUser() {
+    //this.dialog.open(IFrameDialogComponent);
+   }
+
+   closeDialogUpdateUser() {
+   // this.dialogRef.close('Play Youtube Video Closed');
+  }
+
+  updateFields() { }
+
+  getEhrIds(userId) {
+    this.api.getEHRIDsForUser({
+      userId: userId
+    }).subscribe({
+      next: (resp) => {
+        if (resp != null && resp.items != undefined) {
+          var tmp = this.request;
+          tmp.newEHRID = resp.items;
+          this.request = null;
+          this.request = tmp;
+        }
+      },
+      error: (e) => console.log(e),
+    });
+
   }
 
   PrimarySpeciality: specialties[] = [

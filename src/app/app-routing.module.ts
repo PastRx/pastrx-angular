@@ -12,6 +12,7 @@ import { UserDetailsComponent } from './dashboard/user-details/user-details.comp
 import {AdminDashboardComponent} from './administration/admin-dashboard/admin-dashboard.component';
 import {AddUserComponent} from './administration/add-user/add-user.component';
 import {UserListComponent} from './administration/user-list/user-list.component';
+import {UserUpdateComponent} from './administration/user-update/user-update.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,11 @@ const routes: Routes = [
   {
     path: 'user-details',
     component: UserDetailsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'user-update',
+    component: UserUpdateComponent,
     canActivate: [AuthGuard],
   },
   {
