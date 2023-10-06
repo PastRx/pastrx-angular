@@ -12,6 +12,7 @@ import { UserDetailsComponent } from './dashboard/user-details/user-details.comp
 import {AdminDashboardComponent} from './administration/admin-dashboard/admin-dashboard.component';
 import {AddUserComponent} from './administration/add-user/add-user.component';
 import {UserListComponent} from './administration/user-list/user-list.component';
+import { PracticeSettingsComponent } from './admin/practice-settings/practice-settings.component';
 
 const routes: Routes = [
   {
@@ -58,6 +59,11 @@ const routes: Routes = [
     path: '',
     component: LoginComponent,
     pathMatch: 'full',
+  },
+  {
+    path: 'practice-settings',
+    component: PracticeSettingsComponent,
+    
   },
 ];
 

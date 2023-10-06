@@ -33,11 +33,13 @@ import {MatInputModule} from '@angular/material/input';
 import { DatePipe } from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { UserDetailsComponent } from './dashboard/user-details/user-details.component';
-import { GoogleMapsModule } from '@angular/google-maps'
+import { GoogleMapsModule } from '@angular/google-maps';
+import { PracticeSettingsComponent } from './admin/practice-settings/practice-settings.component';
 import {AddUserComponent} from './administration/add-user/add-user.component';
 import {UserListComponent} from './administration/user-list/user-list.component';
 import { AdminDashboardComponent } from './administration/admin-dashboard/admin-dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     AdminDashboardComponent,
     AddUserComponent,
     UserListComponent,
+    PracticeSettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +85,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatInputModule,
     MatTabsModule,
     MatAutocompleteModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    MatDialogModule
   ],
   providers: [
     DatePipe,
