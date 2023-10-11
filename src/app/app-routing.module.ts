@@ -13,6 +13,7 @@ import {AdminDashboardComponent} from './administration/admin-dashboard/admin-da
 import {AddUserComponent} from './administration/add-user/add-user.component';
 import {UserListComponent} from './administration/user-list/user-list.component';
 import {UserUpdateComponent} from './administration/user-update/user-update.component';
+import { PracticeSettingsComponent } from './admin/practice-settings/practice-settings.component';
 
 const routes: Routes = [
   {
@@ -64,6 +65,11 @@ const routes: Routes = [
     path: '',
     component: LoginComponent,
     pathMatch: 'full',
+  },
+  {
+    path: 'practice-settings',
+    component: PracticeSettingsComponent,
+    
   },
 ];
 

@@ -6,11 +6,16 @@
         <h3 class="text-white fw-normal pt-3"> {{inputTitle}}</h3>  
     </div>
     <div class="col-8 text-right text-white">
-        <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="settings-applications" routerLink="/admin-dashboard"></mat-icon><small>Admin</small></span>        
-        <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="date_range"></mat-icon><small>Set Date</small></span>
-        <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="refresh"></mat-icon><small>Refresh</small></span>
-        <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="do_not_disturb_on"></mat-icon><small>Remove</small></span>
-        <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="print"></mat-icon><small>Batch PDF</small></span>
-        <span class="d-inline-grid"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="report-problem"></mat-icon><small>Feedback</small></span>
+        <div [hidden]="currentRout == '/admin-dashboard'">
+            <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="settings-applications" routerLink="/admin-dashboard"></mat-icon><small class="text-center">Admin</small></span>        
+            <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="date_range"></mat-icon><small class="text-center">Set Date</small></span>
+            <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="refresh"></mat-icon><small class="text-center">Refresh</small></span>
+            <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="do_not_disturb_on"></mat-icon><small class="text-center">Remove</small></span>
+            <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="print"></mat-icon><small class="text-center">Batch PDF</small></span>
+            <span class="d-inline-grid"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="report-problem"></mat-icon><small class="text-center">Feedback</small></span>
+        </div>
+        <div [hidden]="currentRout != '/admin-dashboard'">
+            <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="exit_to_app" routerLink="/user-dashboard"></mat-icon><small class="text-center">App</small></span>  
+        </div>
     </div>
 </div>

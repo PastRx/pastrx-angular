@@ -1,0 +1,22 @@
+<div class="card m-2 rounded-0">
+    <div class="card-body p-0 rounded-0 bg-smoke">
+<h3 mat-dialog-title style=background-color:cadetblue>Practice Successfully Updated: </h3>
+<div mat-dialog-content class="col">
+  <p>Practice Name: <b>{{data.practiceName}}</b></p>
+  <hr>
+  <p>Address: <b>{{data.address.locSource}}</b></p>
+  <hr>
+  <p>MME/Day Threshold: <b>{{data.medThreshold}}</b> &nbsp;
+  &nbsp;&nbsp;Alert Trigger Range: <b>{{data.alertDaysBack}}</b></p>
+  <hr>
+  <p>Write/Fill Gap Range: <b>{{data.alertWriteFillGap}}</b></p>
+  <hr>
+  <p>Expected Number of Patients per night: <b>{{data.expectedPatientsPerNight}}</b></p>
+  
+
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button  (click)="onClick()" cdkFocusInitial>Ok</button>
+</div>
+</div>
+</div>
