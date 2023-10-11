@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class UserDetailsComponent {
   showMaps = false;
+  showPMP = false;
+  showAlerts = false;
   appTitle = "Patients Details";
   center: google.maps.LatLngLiteral = {
     lat: 22.2736308,
@@ -14,19 +16,19 @@ export class UserDetailsComponent {
   };
   zoom = 6;
   constructor() {
-  
+
   }
   ngOnInit() {
-    var canvas = <HTMLCanvasElement>document.getElementById('stage');
-    if (canvas.getContext) {
-      var ctx = canvas.getContext('2d');
+    // var canvas = <HTMLCanvasElement>document.getElementById('stage');
+    // if (canvas.getContext) {
+    //   var ctx = canvas.getContext('2d');
 
-      ctx.fillStyle = "#D74022";
-      ctx.fillRect(25, 25, 150, 150);
+    //   ctx.fillStyle = "#D74022";
+    //   ctx.fillRect(25, 25, 150, 150);
 
-      ctx.fillStyle = "rgba(0,0,0,0.5)";
-      ctx.clearRect(60, 60, 120, 120);
-      ctx.strokeRect(90, 90, 80, 80);
-    }
+    //   ctx.fillStyle = "rgba(0,0,0,0.5)";
+    //   ctx.clearRect(60, 60, 120, 120);
+    //   ctx.strokeRect(90, 90, 80, 80);
+    // }
   }
 }
