@@ -41,6 +41,7 @@ import { AdminDashboardComponent } from './administration/admin-dashboard/admin-
 import { MatTabsModule } from '@angular/material/tabs';
 import { UserUpdateComponent } from './administration/user-update/user-update.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { DelegateSettingsComponent } from './admin/delegate-settings/delegate-settings.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     AddUserComponent,
     UserListComponent,
     UserUpdateComponent,
-    PracticeSettingsComponent
+    PracticeSettingsComponent,
+    DelegateSettingsComponent
   ],
   imports: [
     BrowserModule,
