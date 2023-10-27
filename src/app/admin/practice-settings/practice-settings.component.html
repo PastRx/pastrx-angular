@@ -1,83 +1,107 @@
 
 <div class="card m-2 rounded-0">
     <div class="card-body p-0 rounded-0 bg-smoke">
-        <h5 class="card-title bg-gray text-white p-2 rounded-0">Practice Settings</h5>
-        <div class="col" style="background-color:rgb(44, 152, 195)">
+        <div class="col">
+            <h6>Please enter the settings for your practice. Fill in each field, then click the “Update” button at the bottom of the screen. <span style="color: blue;">Blue</span> items are required inputs.</h6>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; ">
+            <div class = "grid bg-white card-body p-0 rounded-0" style="width:80%">
+
+        <h5 class="card-title bg-gray text-white p-2 rounded-0" style="width:99%; margin-left:10px;" >Practice Settings</h5>
+        <div style="display:flex; flex-wrap:wrap; ">
+            <div class = "grid" style="width:48%;">
+        <div class="col" style="background-color:#b4b5cd">
             <h6 class="card-title p-2 rounded-0">Analysis Settings</h6>
         
-            <mat-form-field class="example-full-width" (click)="hintMME()">
-                <mat-label>MME/Day Alert Threshold</mat-label>
-                <input matInput [(ngModel)]="practice.medThreshold" required>
+            <mat-form-field class="example-full-width" >
+                <mat-label class="required">MME/Day Alert Threshold</mat-label>
+                <input matInput [(ngModel)]="practice.medThreshold" required (focus)="hintMME()">
             </mat-form-field>
 
       <!--      
         </div>
         <div class="col">  -->
-            <mat-form-field class="example-full-width" (click)="hintAlert()">
-                <mat-label>Alert Trigger Range</mat-label>
-                <input matInput [(ngModel)]="practice.alertDaysBack" required>
+            <mat-form-field class="example-full-width" >
+                <mat-label style="color: blue;">Alert Trigger Range</mat-label>
+                <input matInput [(ngModel)]="practice.alertDaysBack" required (focus)="hintAlert()">
             </mat-form-field>
 
         <!--   
         </div>
 
         <div class="col">  -->
-            <mat-form-field class="example-full-width" (click)="hintGap()">
-                <mat-label>White/Fill Gap Range</mat-label>
-                <input matInput [(ngModel)]="practice.alertWriteFillGap" required>
+            <mat-form-field class="example-full-width" >
+                <mat-label style="color: blue;">White/Fill Gap Range</mat-label>
+                <input matInput [(ngModel)]="practice.alertWriteFillGap" required (focus)="hintGap()">
             </mat-form-field>
 
-           <p> </p> 
+          
         </div>
-
-        <div style="background-color:rgb(44, 152, 195)">
-            <h6 class="card-title p-2 rounded-0">Info Panel</h6>
-            <p>{{hint}}</p>
-        </div>
-        <br>
-        <div style="background-color:rgb(44, 152, 195)">
-         <div class="col" >
-            <h6 class="card-title p-2 rounded-0">Practice Address</h6>
-            <p>Enter the Address of your practice</p>
-            <mat-form-field class="example-full-width">
-                <mat-label>Line1</mat-label>
-                <input matInput [(ngModel)]="practice.address.line1" required>
-            </mat-form-field>
-
-                   </div>
-        <div class="col">
-            <mat-form-field class="example-full-width">
-                <mat-label>Line2</mat-label>
-                <input matInput [(ngModel)]="practice.address.line2" >
-            </mat-form-field>
-
-            </div>
-
-        <div class="col">
-            <mat-form-field class="example-full-width">
-                <mat-label>City</mat-label>
-                <input matInput [(ngModel)]="practice.address.city" required>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width">
-                <mat-label>State</mat-label>
-                <input matInput [(ngModel)]="practice.address.state" required>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width">
-                <mat-label>Zip</mat-label>
-                <input matInput [(ngModel)]="practice.address.zip" required>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width">
-                <mat-label>PMP State</mat-label>
-                <input matInput [(ngModel)]="practice.defaultPMPState" required>
-            </mat-form-field>
-            Enter the default state for PMP requests.
-
-            </div>
-            </div>
     </div>
 
-    <button mat-raised-button style="background-color: lightcoral" (click)="update()">UPDATE</button>
-</div>                    
+
+    <div class = "grid" style="width:50%;">
+        <div class="col" style="background-color:#b4b5cd">
+           <h6 class="card-title p-2 rounded-0">Practice Address</h6>
+           <p>Enter the Address of your practice</p>
+           <mat-form-field class="example-full-width" style="width:100%;">
+               <mat-label style="color: blue;">Line1</mat-label>
+               <input matInput [(ngModel)]="practice.address.line1" required (focus)="hintAddress()">
+           </mat-form-field>
+
+                  
+           <mat-form-field class="example-full-width" style="width:100%;" >
+               <mat-label>Line2</mat-label>
+               <input matInput [(ngModel)]="practice.address.line2" (focus)="hintAddress()" >
+           </mat-form-field>
+
+          
+           <mat-form-field class="example-full-width" >
+               <mat-label style="color: blue;">City</mat-label>
+               <input matInput [(ngModel)]="practice.address.city" required (focus)="hintAddress()">
+           </mat-form-field>
+
+           <mat-form-field class="example-full-width" >
+               <mat-label style="color: blue;">State</mat-label>
+               <input matInput [(ngModel)]="practice.address.state" required (focus)="hintAddress()">
+           </mat-form-field>
+
+           <mat-form-field class="example-full-width" >
+               <mat-label style="color: blue;">Zip</mat-label>
+               <input matInput [(ngModel)]="practice.address.zip" required (focus)="hintAddress()">
+           </mat-form-field>
+
+           <mat-form-field id="pmpState" class="example-full-width" >
+               <mat-label style="color: blue;">PMP State</mat-label>
+               <input matInput [(ngModel)]="practice.defaultPMPState" required (focus)="hintPMPState()">
+           </mat-form-field>
+           
+
+           </div>
+           </div>
+
+        </div>
+        </div>
+        <div class = "grid bg-white card-body p-0 rounded-0" style="width:15%">
+            <h5 class="card-title bg-gray text-white p-2 rounded-0" style="width:97%;margin-left:5px;" >Info</h5>
+       
+                <div class="col" style="background-color:white">
+                    <h6 class="card-title p-2 rounded-0" style="text-align: center;">{{InfoPanel}}</h6>
+                    <p>{{hint}}</p>
+                </div>
+            
+            </div>
+        </div>
+        
+    
+      
+       
+            
+          
+    </div>
+
+</div>  
+    <button mat-raised-button style="background-color:  #d0a8ad" (click)="update()">UPDATE</button>
+                  
+
+

@@ -38,7 +38,7 @@ export class PracticeSettingsComponent {
   }
 
   hint = "As you move through the form , this panel will display details about the current field.";
-
+  InfoPanel = "Info Panel";
   constructor(private api: ApiService,public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -57,15 +57,27 @@ export class PracticeSettingsComponent {
   }
   
   hintMME(){
+    this.InfoPanel = "MME/Day Alert Threshold";
    this.hint= "The MME/Day Alert Threshold is the number of mg Morphine Milligram Equivalency per Day that will set off the high dose alert. So, with an MME/Day Alert Threshold of 400, a patient would need to have 400 mg MME/Day on a single day to set off the alert.";
   }
 
   hintAlert(){
+    this.InfoPanel = "Alert Trigger Range";
     this.hint = "The alert trigger range is the number of days into the past that the program will look to trigger alerts. So if it’s set at 60 days, you’ll still receive prescription information for the past year, but alerts will only be triggered for events in the past two months.";
   }
 
   hintGap(){
+    this.InfoPanel = "Write/Fill Gap Range";
     this.hint="The Write/Fill Gap Range is the number of days between the date a prescription was written and the date it was filled. So, if you set this at two days, an alert will be triggered when a patient fills a prescription two or more days after it was written.";
+  }
+
+  hintAddress(){
+    this.InfoPanel = "Practice Address";
+    this.hint="Enter the Address of your practice";
+  }
+  hintPMPState(){
+    this.InfoPanel = "PMP State";
+    this.hint="Enter the default state for PMP requests.";
   }
   
   update(){

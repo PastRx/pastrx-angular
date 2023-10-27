@@ -1,9 +1,25 @@
-mat-form-field { margin-right: 20px;
-    color:lightskyblue
+mat-form-field { margin-right: 10px;
+    color:lightskyblue;
+    background-color:#b4b5cd
+    
+ }
+ .required{
+    color:blue;
  }
 button {width: 100px;
-margin-left: 20px;
-margin-top: 20px;
-margin-bottom: 20px;
+margin-left: 10px;
+margin-top: 10px;
+margin-bottom: 10px;
 
+}
+
+.col{
+    margin-top: 10px;
+   
+}
+
+.grid{
+    margin-left : 10px;
+    margin-bottom: 10px;
+    
 }
