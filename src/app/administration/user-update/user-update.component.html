@@ -25,15 +25,15 @@
             <div class="col">
                 <mat-form-field class="example-full-width">
                     <mat-label>Last Name</mat-label>
-                    <input matInput [(ngModel)]="request.lastName" required>
+                    <input matInput [(ngModel)]="request.lastName" required (focus)="hintLastName()">
                 </mat-form-field>
                 <mat-form-field class="mx-5">
                     <mat-label>First Name</mat-label>
-                    <input matInput [(ngModel)]="request.firstName" required>
+                    <input matInput [(ngModel)]="request.firstName" required (focus)="hintFirstName()">
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
                     <mat-label>Email Address</mat-label>
-                    <input matInput [(ngModel)]="request.email">
+                    <input matInput [(ngModel)]="request.email" (focus)="hintEmail()">
                     <!-- <input matInput [(ngModel)]="request.email" [pattern]="emailPattern" #requestEmail="ngModel" required > -->
                 </mat-form-field>
                 <!-- <div *ngIf="requestEmail.errors"> 
@@ -51,25 +51,25 @@
             <div class="col">
                 <mat-form-field class="example-full-width">
                     <mat-label>Prescriber NPI</mat-label>
-                    <input matInput [(ngModel)]="request.prescriberNPI">
+                    <input matInput [(ngModel)]="request.prescriberNPI" (focus)="hintNPINumber()">
                 </mat-form-field>
                 <mat-form-field class="mx-4">
                     <mat-label>Prescriber DEA</mat-label>
-                    <input matInput [(ngModel)]="request.prescriberDEANumber">
+                    <input matInput [(ngModel)]="request.prescriberDEANumber" (focus)="hintPrescriberDEA()">
                 </mat-form-field>
                 <mat-form-field class="mx-4">
                     <mat-label>Prescriber State ID</mat-label>
-                    <input matInput [(ngModel)]="request.prescriberStateId">
+                    <input matInput [(ngModel)]="request.prescriberStateId" (focus)="hintStateID()">
                 </mat-form-field>
             </div>
             <div class="col">
                 <mat-form-field class="mx-4">
                     <mat-label>NCPDP ID</mat-label>
-                    <input matInput [(ngModel)]="request.prescriberNCPDP">
+                    <input matInput [(ngModel)]="request.prescriberNCPDP" (focus)="hintNCPDPID()">
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
                 <mat-label>Primary Speciality</mat-label>
-                 <mat-select (selectionChange)="updateFields()" [(ngModel)]="selpsp">
+                 <mat-select (selectionChange)="updateFields()" [(ngModel)]="selpsp" (focus)="hintPrimarySpecialty()">
                     <mat-option value="{{pts.Value}}" *ngFor="let pts of PrimarySpeciality">{{pts.Value}}{{pts.Display}}</mat-option>
                 </mat-select> 
             </mat-form-field>
@@ -126,10 +126,9 @@
                     <mat-icon (click)="openDialogUpdateUser()">help</mat-icon>
                 </div>
             </h5>
-            <div>
-                <h5 style="text-align: center;">Info Panel</h5>
-                <p>As you move through the form to the left, this panel will display details about the current field.
-                </p>
+            <div class="col" style="background-color:white">
+                <h6 class="card-title p-2 rounded-0" style="text-align: center;">{{InfoPanel}}</h6>
+                <p [innerHTML]="hint"></p>
             </div>
         </div>
     </div>

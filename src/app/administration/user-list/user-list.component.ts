@@ -85,7 +85,7 @@ export class UserListComponent {
       this.selectedItem.push(this.list[0].firstName, this.list[0].lastName);
       this.api.setUserActiveList(
         {
-          providerList: this.list,
+          providerList: this.selectedItem,
           masquerade: PASTRX.masquerade
         }).subscribe({
           next: (response) => {

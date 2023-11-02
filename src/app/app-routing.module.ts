@@ -14,6 +14,7 @@ import {AddUserComponent} from './administration/add-user/add-user.component';
 import {UserListComponent} from './administration/user-list/user-list.component';
 import {UserUpdateComponent} from './administration/user-update/user-update.component';
 import { PracticeSettingsComponent } from './admin/practice-settings/practice-settings.component';
+import { ResourceComponent } from './resource/resource.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,10 @@ const routes: Routes = [
   {
     path: 'add-user',
     component: AddUserComponent,
+  },
+  {
+    path: 'app-resource',
+    component: ResourceComponent,
   },
   {
     path: '',
