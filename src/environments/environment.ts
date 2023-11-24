@@ -27,6 +27,7 @@ export const environment = {
   httpInterceptor: {
     allowedList: [`${apiUri}/*`,'https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/','https://apis-explorer.appspot.com/'],
   },
+  api: 'https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/',
 };
 
 /*

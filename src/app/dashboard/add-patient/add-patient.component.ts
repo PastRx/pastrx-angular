@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
+import { CommonService } from 'src/app/common.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 declare var PASTRX: any;
@@ -33,7 +34,7 @@ export class AddPatientComponent {
   };
 selectedProvider: any;
   selectedProviderId: any;
-  constructor(private api: ApiService,private datePipe: DatePipe, private router: Router   ) { }
+  constructor(private api: ApiService,private datePipe: DatePipe, private router: Router, public CommonService:CommonService   ) { }
   ngOnInit() {
     this.api.getPatientNames().subscribe({
       next: (res) => {
@@ -86,7 +87,7 @@ this.selectedProviderId = this.selectedProvider.id;
           // }
 
         } else {
-          // alert("There was a problem processing the patient: " + expectedPatient + " Please try again. \n\n Error Message: " + resp.data);
+          this.CommonService.onError("There was a problem processing the patient: " + this.request.firstName + this.request.lastName + " Please try again. \n\n Error Message: " + resp.data);
         }
       },
       error: (err) => console.log(err),

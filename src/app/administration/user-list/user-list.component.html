@@ -10,30 +10,35 @@
         <div class="col p-2">
             <button mat-raised-button class="col-2 me-4 activeButtonsList" (click)="addUserRequest()">ADD NEW
                 USER</button>
-            <button mat-raised-button class="col-2 me-4 buttonBlue" routerLink="/user-list">UPLOAD USER LIST</button>
+                <!-- (click)="fileUpload.click()" -->
+            <button mat-raised-button class="col-2 me-4 buttonBlue" >UPLOAD USER LIST</button>
         </div>
         <div class="card-body p-2 rounded-0 bg-smoke">
             <h5 class="card-title bg-gray text-white p-2 rounded-0">Practice Settings: Our Users</h5>
             <div class="row m-0 py-3">
                 <div class="col-5 p-0">
-                    <mat-checkbox class="example-margin" [(ngModel)]="isInactiveUsers">Show Inactive
+                    <mat-checkbox class="example-margin" [(ngModel)]="isInactiveUsers" (click)="onChange()">Show Inactive
                         Users</mat-checkbox>
-                    <mat-checkbox class="example-margin" [(ngModel)]="isOnlyInactiveUsers">Show Only Inactive
+                    <mat-checkbox class="example-margin" [(ngModel)]="isOnlyInactiveUsers" (click)="onChange()">Show Only Inactive
                         Users</mat-checkbox>
-                    <mat-checkbox class="example-margin" [(ngModel)]="isOnlyRemovedUsers">Show Only Removed
+                    <mat-checkbox class="example-margin" [(ngModel)]="isOnlyRemovedUsers" (click)="onChangeRemove()">Show Only Removed
                         Users</mat-checkbox>
                 </div>
                 <div class="col text-right p-0">
-                    <button mat-raised-button class="me-2 px-2 activeButtonsList" (click)="addUserRequest()">SET USERS
+                    <button mat-raised-button class="me-2 px-2 activeButtonsList" (click)="setInactive()">SET USERS
                         TO INACTIVE</button>
-                    <button mat-raised-button class="me-2 px-2 activeButtonsList" routerLink="/user-list">SET USERS TO
+                    <button mat-raised-button class="me-2 px-2 activeButtonsList" (click)="setActive()">SET USERS TO
                         ACTIVE</button>
-                    <button mat-raised-button class="me-2 px-2 activeButtonsList" (click)="addUserRequest()">MAKE
+                    <button mat-raised-button class="me-2 px-2 activeButtonsList" (click)="setAdmin()">MAKE
                         ADMIN</button>
-                    <button mat-raised-button class="me-2 px-2 activeButtonsList" routerLink="/user-list">REVOKE
+                    <button mat-raised-button class="me-2 px-2 activeButtonsList" (click)="removeAdmin()">REVOKE
                         ADMIN</button>
-                    <button mat-raised-button class="me-2 px-2 activeButtonsList" routerLink="/user-list">REMOVE
-                        ADMIN</button>
+                        <!-- [hidden]="showRemoved" -->
+                    <button mat-raised-button class="me-2 px-2 activeButtonsList"  (click)="removeUsers()">REMOVE
+                        USERS</button>
+                        <!-- [hidden]="!showRemoved"  -->
+                        <button mat-raised-button class="me-2 px-2 activeButtonsList" (click)="unremoveUsers()">UN-REMOVE
+                            USERS</button>
                 </div>
             </div>
 
@@ -43,12 +48,12 @@
                 <div class="prescriberBox">
                     <div class="card w-100 buttonBlue">
                         <div class="card-body">
-                            <mat-checkbox class="example-margin"></mat-checkbox>
+                            <mat-checkbox class="example-margin" (click)="getSelected($event,usr)"></mat-checkbox>
                             <span>{{usr.lastName}}</span>, <span class="me-5">{{usr.firstName}}</span>
                             <span>email: </span><span style="font-weight: bold;">{{usr.email}}</span>
                             <hr class="hr1">
-                            <span style="font-weight: bold; color: lime" class="me-5 textFont">Prescriber</span>
-                            <span class="me-5 textFont" style="font-style: italic;">Login Allowed</span>
+                            <span [hidden]="!usr.prescriber" style="font-weight: bold; color: lime" class="me-5 textFont">Prescriber</span>
+                            <span [hidden]="!usr.loginAllowed" class="me-5 textFont" style="font-style: italic;">Login Allowed</span>
                             <span [hidden]="!usr.active" class="textFont" style="color:green;font-style: italic;">Active</span>
                             <span [hidden]="usr.active" class="textFont" style="color:red;font-style: italic;">Inactive</span>
                         </div>

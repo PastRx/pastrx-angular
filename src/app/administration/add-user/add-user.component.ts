@@ -14,6 +14,8 @@ interface specialties {
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })
+
+
 export class AddUserComponent {
   @Output() outputSetAddUser = new EventEmitter<boolean>();
   emailPattern = "[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+(\.[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+)*@([a-zA-Z0-9_][-a-zA-Z0-9_]*(\.[-a-zA-Z0-9_]+)*\.([cC][oO][mM]))(:[0-9]{1,5})?";
@@ -33,6 +35,10 @@ export class AddUserComponent {
     newEHRID: '',
     newEHRIDType: '',
   };
+
+  hint = "As you move through the form to the left, this panel will display details about the current field.";
+  InfoPanel = "Info Panel";
+
   constructor(private api: ApiService, private datePipe: DatePipe, private router: Router) { }
   updateFields() { }
   submitRequest() {
@@ -59,8 +65,56 @@ export class AddUserComponent {
       });
   }
 
+  hintLastName(){
+    this.InfoPanel = "Last Name";
+   this.hint= "Last Name of the Provider.";
+  }
+
+  hintFirstName(){
+    this.InfoPanel = "First Name";
+   this.hint= "First Name of the Provider.";
+  }
+
+  hintEmail(){
+    this.InfoPanel = "Email";
+   this.hint= "Email of the Provider. This must be the Google ID the provider will use to login.";
+  }
+
+  hintPrimarySpecialty(){
+    this.InfoPanel = "Primary Specialty";
+   this.hint='Taxonomy code for primary specialty.<br>Pmp Gateway Accepted specialties.<br>103T*<br>152W*<br>207*<br>208*<br>213E*<br>363A*<br>363L*<br>1223*<br>1835*<br>3336*<br>175F00000X<br>1835P0018X<br>174M00000X<br>183700000X<br>183500000X';
+  }
+
+  hintNCPDPID(){
+    this.InfoPanel = "NCPDP ID";
+   this.hint= "NCPDP ID.";
+  }
+
+  hintStateID(){
+    this.InfoPanel = "Prescriber State ID";
+   this.hint= "State ID of the prescriber.";
+  }
+
+  hintPrescriberDEA(){
+    this.InfoPanel = "Prescriber DEA";
+   this.hint= "DEA Number for the prescriber.";
+  }
+
+ hintNPINumber(){
+    this.InfoPanel = "NPI Number";
+   this.hint= "NPI Number of the Provider.";
+  }
+
   setIsAddUser() {
     this.outputSetAddUser.emit(false);
+  }
+
+  openDialogUpdateUser() {
+    //this.dialog.open(IFrameDialogComponent);
+   }
+
+   closeDialogUpdateUser() {
+   // this.dialogRef.close('Play Youtube Video Closed');
   }
 
   getEhrIdList() {

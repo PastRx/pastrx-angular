@@ -1,10 +1,11 @@
-import { Component ,Inject} from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThisReceiver } from '@angular/compiler';
 import { DatePipe } from '@angular/common';
 import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
-//import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ResourceComponent } from 'src/app/resource/resource.component';
 
 declare var PASTRX: any;
 declare var gapi: any;
@@ -41,7 +42,10 @@ export class UserUpdateComponent {
     specialty: ''
   };
 
-  constructor(private api: ApiService, private datePipe: DatePipe, private router: Router) { }
+  hint = "As you move through the form to the left, this panel will display details about the current field.";
+  InfoPanel = "Info Panel";
+
+  constructor(private api: ApiService, private datePipe: DatePipe, private router: Router, public dialog: MatDialog) { }
   ngOnInit() {
     this.api.getUserData(
       {
@@ -63,12 +67,61 @@ export class UserUpdateComponent {
     });
   }
 
-  openDialogUpdateUser() {
-    //this.dialog.open(IFrameDialogComponent);
-   }
+  openDialogUpdateUser(): void {
+    const dialogRef = this.dialog.open(ResourceComponent, {
+      width: '100%'
+    });
 
-   closeDialogUpdateUser() {
-   // this.dialogRef.close('Play Youtube Video Closed');
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+
+
+
+  closeDialogUpdateUser() {
+    // this.dialogRef.close('Play Youtube Video Closed');
+  }
+
+  hintLastName() {
+    this.InfoPanel = "Last Name";
+    this.hint = "Last Name of the Provider.";
+  }
+
+  hintFirstName() {
+    this.InfoPanel = "First Name";
+    this.hint = "First Name of the Provider.";
+  }
+
+  hintEmail() {
+    this.InfoPanel = "Email";
+    this.hint = "Email of the Provider. This must be the Google ID the provider will use to login.";
+  }
+
+  hintPrimarySpecialty() {
+    this.InfoPanel = "Primary Specialty";
+    this.hint = 'Taxonomy code for primary specialty.<br>Pmp Gateway Accepted specialties.<br>103T*<br>152W*<br>207*<br>208*<br>213E*<br>363A*<br>363L*<br>1223*<br>1835*<br>3336*<br>175F00000X<br>1835P0018X<br>174M00000X<br>183700000X<br>183500000X';
+  }
+
+  hintNCPDPID() {
+    this.InfoPanel = "NCPDP ID";
+    this.hint = "NCPDP ID.";
+  }
+
+  hintStateID() {
+    this.InfoPanel = "Prescriber State ID";
+    this.hint = "State ID of the prescriber.";
+  }
+
+  hintPrescriberDEA() {
+    this.InfoPanel = "Prescriber DEA";
+    this.hint = "DEA Number for the prescriber.";
+  }
+
+  hintNPINumber() {
+    this.InfoPanel = "NPI Number";
+    this.hint = "NPI Number of the Provider.";
   }
 
   updateFields() { }

@@ -29,3 +29,53 @@ label {
 .fw-500{
     font-weight: 500 !important;
 }
+.success-snackbar.mat-mdc-snack-bar-container {
+    .mdc-snackbar__surface {
+        background: green;
+
+        .mat-mdc-button {
+            color: white !important;
+            padding: 0px;
+            min-width: 20px;
+            height: 20px;
+        }
+    }
+
+    .mat-mdc-snack-bar-actions {
+        padding: 0px;
+        width: 20px;
+    }
+
+    .mat-mdc-snack-bar-label.mdc-snackbar__label {
+        color: white;
+        font-weight: 500;
+        white-space: pre-wrap;
+        padding: 5px;
+    }
+}
+
+.error-snackbar.mat-mdc-snack-bar-container {
+    .mdc-snackbar__surface {
+        background: red;
+
+        .mat-mdc-button {
+            color: white !important;
+            padding: 0px;
+            min-width: 20px;
+            height: 20px;
+        }
+    }
+
+    .mat-mdc-snack-bar-actions {
+        padding: 0px;
+        width: 20px;
+    }
+
+    .mat-mdc-snack-bar-label.mdc-snackbar__label {
+        color: white;
+        font-weight: 500;
+        white-space: pre-wrap;
+        padding: 5px;
+
+    }
+}
