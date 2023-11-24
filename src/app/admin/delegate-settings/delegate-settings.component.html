@@ -2,8 +2,20 @@
 <h5 style="text-align: center;">Delegates Page</h5>
 <p>This is where providers can choose which other doctors in their practice will be assigned as their delegates. Delegate permissions will vary from state to state. Select the desired users, then be sure to click the “Update Delegate List” button to save your preferences.</p>
 
-<div class="col p-2">
-    <button mat-raised-button class="col-2 me-4 buttonBlue" (click)="uploadDelegateFile()">UPLOAD DELEGATE FILE</button>
+<!-- <div class="col p-2">
+    <button mat-raised-button class="col-2 me-4 buttonBlue upload-btn" (click)="uploadDelegateFile()">UPLOAD DELEGATE FILE</button>
+    <input type="file" class="file-upload" onchange="console.log(event.target.files)">
+</div>
+ -->
+<input type="file" class="file-input"
+       (change)="onFileSelected($event)" #fileUpload>
+
+<div class="file-upload col p-2">
+
+    <button mat-raised-button  class="upload-btn buttonBlue"
+      (click)="fileUpload.click()">
+      UPLOAD DELEGATE FILE
+    </button>
 </div>
 
 <div class="card-body p-0 rounded-0 bg-smoke">
@@ -20,7 +32,7 @@
             <div class="m-2 card-body buttonBlue"  *ngFor="let usr of userList">
                 
                            
-                                <mat-checkbox class="example-margin"></mat-checkbox>
+                                <mat-checkbox class="example-margin"  [(ngModel)]="usr.isChecked"></mat-checkbox>
                                 <span>{{usr.lastName}}</span>, <span class="me-5">{{usr.firstName}}</span>
                             
                         </div>
@@ -37,6 +49,17 @@
                    </div>
         <div class = "grid  card-body p-0 rounded-0" style="width:45%">
             <h5 class="card-title bg-gray text-white p-2 rounded-0" style="margin-left:10px;" >Delegates</h5>
+
+            <div style="height: 200px; overflow-y: auto;">
+                <div class="m-2 card-body buttonBlue"  *ngFor="let delegate of delegatesList">
+                    
+                               
+                                    <mat-checkbox class="example-margin"  [(ngModel)]="delegate.isChecked"></mat-checkbox>
+                                    <span>{{delegate.lastName}}</span>, <span class="me-5">{{delegate.firstName}}</span>
+                                
+                            </div>
+               
+            </div>
         </div>
     </div>    
 </div>

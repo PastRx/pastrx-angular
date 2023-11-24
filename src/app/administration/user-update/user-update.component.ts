@@ -49,7 +49,7 @@ export class UserUpdateComponent {
       }
     ).subscribe({
       next: (res) => {
-        console.log('getUserData------------>' + res)
+        console.log('getUserData------------>' + res.id)
         this.request = res;
         this.getEhrIds(res.id);
         if (this.request.specialty == undefined) {
