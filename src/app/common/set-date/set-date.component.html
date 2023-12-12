@@ -1,0 +1,8 @@
+<mat-card class="demo-inline-calendar-card">
+    <mat-calendar [(selected)]="selected"></mat-calendar>
+</mat-card>
+<div class="col" style="padding-left: 305px;margin-top: 5px;">
+    <button mat-raised-button class="col-2 me-4 setdate-button" (click)="onClick()">Cancel</button>
+    <button mat-raised-button class="col-2 me-4 setdate-button" (click)="changeTargetDate()">ok</button>
+</div>
+<!-- <p>Selected date: {{selected}}</p> -->

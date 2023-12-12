@@ -40,8 +40,12 @@ import {UserListComponent} from './administration/user-list/user-list.component'
 import { AdminDashboardComponent } from './administration/admin-dashboard/admin-dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { UserUpdateComponent } from './administration/user-update/user-update.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule} from '@angular/material/dialog';
 import { DelegateSettingsComponent } from './admin/delegate-settings/delegate-settings.component';
+import { SetDateComponent } from './common/set-date/set-date.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -64,7 +68,8 @@ import { DelegateSettingsComponent } from './admin/delegate-settings/delegate-se
     UserListComponent,
     UserUpdateComponent,
     PracticeSettingsComponent,
-    DelegateSettingsComponent
+    DelegateSettingsComponent,
+    SetDateComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +95,10 @@ import { DelegateSettingsComponent } from './admin/delegate-settings/delegate-se
     MatTabsModule,
     MatAutocompleteModule,
     GoogleMapsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     DatePipe,

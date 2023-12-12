@@ -15,6 +15,7 @@ import {UserListComponent} from './administration/user-list/user-list.component'
 import {UserUpdateComponent} from './administration/user-update/user-update.component';
 import { PracticeSettingsComponent } from './admin/practice-settings/practice-settings.component';
 import { ResourceComponent } from './resource/resource.component';
+import { SetDateComponent } from './common/set-date/set-date.component';
 
 const routes: Routes = [
   {
@@ -61,6 +62,10 @@ const routes: Routes = [
   {
     path: 'add-user',
     component: AddUserComponent,
+  },
+  {
+    path: 'set-date',
+    component: SetDateComponent,
   },
   {
     path: 'app-resource',
