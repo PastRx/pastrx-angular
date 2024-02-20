@@ -36,6 +36,12 @@ export class ApiService {
     console.log(parms);
     return this.http.get(environment.api+'listPASTEncounters?targetDate=' + parms.targetDate, parms);
   }
+  getPastReportJson(parms: any): Observable<any> {
+    console.log(parms);
+    var cprms = this.cleanprms(parms);
+    const body = null;
+    return this.http.post(environment.api+'getPastReportJson?' + new URLSearchParams(cprms), body);
+  }
   getPMPData(parms: any): Observable<any> {
     console.log(parms);
     var cprms = this.cleanprms(parms);
