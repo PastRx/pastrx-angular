@@ -46,6 +46,8 @@ import { SetDateComponent } from './common/set-date/set-date.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from "@angular/material/core";
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -93,6 +95,7 @@ import { MatNativeDateModule } from "@angular/material/core";
     MatSelectModule,
     MatInputModule,
     MatTabsModule,
+    MatSnackBarModule,
     MatAutocompleteModule,
     GoogleMapsModule,
     MatDialogModule,

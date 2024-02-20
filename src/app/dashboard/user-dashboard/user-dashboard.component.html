@@ -36,7 +36,7 @@
     </div>
 
 </div>
-<div class="row m-0" *ngFor="let ptn of patntrespns" routerLink="/user-details">
+<div class="row m-0" *ngFor="let ptn of patntrespns" routerLink="/user-details" (click)="setDetailsUser(ptn)">
     <div class="col-6 py-1 ps-4">
         <div class="row">
             <img src="../../../assets/silhouette2.jpg" alt="User" class="imgcnt p-0">
@@ -52,24 +52,24 @@
         <h3>{{ptn.appointmentTime}}</h3>  
     </div>
     <div class="col-1 pt-3">
-       
+        <h3>{{ptn.metadata.outsideCurrentMME}}</h3>
     </div>
     <div class="col-1 pt-3">
-       
+        <h3>{{ptn.metadata.maxMMEInLookback}}</h3>       
     </div>
     <div class="col-3">
         <div class="row m-0">
             <div class="col-2">
-                <mat-icon aria-hidden="false" class="sicon mx-auto" fontIcon="arrow_upward"></mat-icon>
+                <mat-icon aria-hidden="false" class="sicon mx-auto" fontIcon="arrow_upward" [ngClass]="{'text-danger':ptn.metadata.highDoseAlert != null && ptn.metadata.highDoseAlert > 0}"></mat-icon>
             </div>
             <div class="col-2">
-                <mat-icon aria-hidden="false" class="sicon mx-auto" fontIcon="person_apron"></mat-icon>
+                <mat-icon aria-hidden="false" class="sicon mx-auto" fontIcon="person_apron" [ngClass]="{'text-danger':ptn.metadata.notOurPrescriberAlert > 0 || ptn.metadata.notOurPharmacyAlert > 0}"></mat-icon>
             </div>
             <div class="col-2">
-                <mat-icon aria-hidden="false" class="sicon mx-auto" fontIcon="groups"></mat-icon>
+                <mat-icon aria-hidden="false" class="sicon mx-auto" fontIcon="groups" [ngClass]="{'text-danger':ptn.metadata.multiplePrescribersAlert > 0 || ptn.metadata.overlappingPrescribersAlert > 0 || ptn.metadata.overlappingPharmaciesAlert > 0}"></mat-icon>
             </div>
             <div class="col-2">
-                <mat-icon aria-hidden="false" class="sicon mx-auto" fontIcon="alarm_on"></mat-icon>
+                <mat-icon aria-hidden="false" class="sicon mx-auto" fontIcon="alarm_on" [ngClass]="{'text-danger':ptn.metadata.wfGapAlert != null && ptn.metadata.wfGapAlert > 0}"></mat-icon>
             </div>
             <div class="col-2">
                 <mat-icon aria-hidden="false" class="sicon mx-auto" fontIcon="warning"></mat-icon>
