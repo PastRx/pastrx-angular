@@ -1,13 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable,EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import config from '../../auth_config.json';
+import { User } from '@auth0/auth0-angular';
+import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
+  patients: any[] = [];
+  patientsUpdated = new EventEmitter<any[]>();
+  handleError: (err: any, caught: Observable<any>) => Observable<any>;
   constructor(private http: HttpClient) { }
 
   cleanprms(parms) {
@@ -17,6 +22,19 @@ export class ApiService {
       }
     });
     return parms;
+  }
+  
+  setPatients(patients: any[]): void {
+    this.patients = patients;
+    console.log(this.patients);
+    this.patientsUpdated.emit(this.patients); // Emit changes
+  }
+  
+
+  removePatientById(patientId: number[]): void {
+    this.patients = this.patients.filter(patient => !patientId.includes(patient.id));
+    //this.patientsUpdated.emit(this.patients); // Emit changes
+    this.setPatients(this.patients)
   }
 
   ping$(): Observable<any> {
@@ -68,6 +86,44 @@ export class ApiService {
     console.log(parms);
     var cprms = this.cleanprms(parms);
     return this.http.get(environment.api+'getEHRIDsForUser?' + new URLSearchParams(cprms));
+  }
+  
+  hidePatientAppointments(patientList: number[], masquerade: string | null, targetDate: string | null): Observable<any> {
+  // Construct query parameters
+  console.log("plist" + patientList);
+  const patientListQueryParam = patientList.join('&patientList=');
+  let apiParams = `?patientList=${patientListQueryParam}`;
+  if (masquerade) {
+    apiParams += `&masquerade=${masquerade}`;
+  }
+  if (targetDate) {
+    apiParams += `&targetDate=${targetDate}`;
+  }
+
+  // Make HTTP GET request
+  return this.http.get(environment.api + 'hidePatientAppointments' + apiParams)
+    .pipe(
+      catchError(this.handleError) // Handle errors
+    );
+  }
+  
+  unhidePatientAppointments(patientList: number[], masquerade: string | null, targetDate: string | null): Observable<any> {
+    // Construct query parameters
+    console.log("plist" + patientList);
+    const patientListQueryParam = patientList.join('&patientList=');
+    let apiParams = `?patientList=${patientListQueryParam}`;
+    if (masquerade) {
+      apiParams += `&masquerade=${masquerade}`;
+    }
+    if (targetDate) {
+      apiParams += `&targetDate=${targetDate}`;
+    }
+  
+    // Make HTTP GET request
+    return this.http.get(environment.api + 'unhidePatientAppointments' + apiParams)
+      .pipe(
+        catchError(this.handleError) // Handle errors
+      );
   }
 
   setUserInactiveList(parms: any): Observable<any> {
@@ -129,4 +185,6 @@ export class ApiService {
     const body=null;
     return this.http.get('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/listDelegates');
   }
+  
+  
 }

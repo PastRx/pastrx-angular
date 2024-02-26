@@ -22,6 +22,7 @@ import { environment as env } from '../environments/environment';
 import { AuthInterceptorInterceptor } from '../app/auth-interceptor.interceptor';
 import { LoginComponent } from './auth/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDividerModule } from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
 import { HeaderComponent } from './common/header/header.component';
@@ -32,6 +33,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import { DatePipe } from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { UserDetailsComponent } from './dashboard/user-details/user-details.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { PracticeSettingsComponent } from './admin/practice-settings/practice-settings.component';
@@ -40,13 +42,16 @@ import {UserListComponent} from './administration/user-list/user-list.component'
 import { AdminDashboardComponent } from './administration/admin-dashboard/admin-dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { UserUpdateComponent } from './administration/user-update/user-update.component';
-import { MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule, MatDialogConfig} from '@angular/material/dialog';
 import { DelegateSettingsComponent } from './admin/delegate-settings/delegate-settings.component';
 import { SetDateComponent } from './common/set-date/set-date.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from "@angular/material/core";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { BatchpdfComponent } from './batchpdf/batchpdf.component';
+import { RemoveBtnComponent } from './remove-btn/remove-btn.component';
 
 
 @NgModule({
@@ -71,7 +76,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     UserUpdateComponent,
     PracticeSettingsComponent,
     DelegateSettingsComponent,
-    SetDateComponent
+    SetDateComponent,
+    FeedbackComponent,
+    BatchpdfComponent,
+    RemoveBtnComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,7 +109,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatDialogModule,
     MatCardModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDividerModule,
+    MatExpansionModule
   ],
   providers: [
     DatePipe,

@@ -1,0 +1,38 @@
+<mat-card>
+    <mat-card-header class="head">
+        <mat-card-title>Batch Download</mat-card-title>
+        <div>
+            <button mat-icon-button class="close-button" (click)="closeDialog()">
+                <mat-icon>close</mat-icon>
+              </button>              
+        </div>
+    </mat-card-header>
+
+<p></p>
+
+<mat-card-content>
+
+    <mat-dialog-actions class="button-container">
+    
+    <button mat-raised-button color="primary" (click)="downloadpdf()" >DOWNLOAD PDF</button>
+    <button mat-raised-button color="primary" (click)="selectAllPatients()">SELECT ALL PATIENTS</button>
+    <button mat-raised-button color="primary"  (click)="deselectAllPatients()">DESELECT ALL PATIENTS</button>
+    
+    </mat-dialog-actions>
+
+    <div>
+        <mat-checkbox [(ngModel)]="hidePatientsWithNoPMPs" name="Checkbox" color="primary" (Change)="toggleHidePatients()">
+            Hide patients with no pmps
+        </mat-checkbox>
+        
+    </div>
+
+    <mat-divider></mat-divider>
+    <p></p>
+
+    <div *ngFor="let ptn of patntrespns" [hidden]="hidePatientsWithNoPMPs && !ptn.hasPMPs">
+        <mat-checkbox [(ngModel)]="ptn.selected" (change)="updateCheckboxState(ptn)"></mat-checkbox>
+        <h4 class="mb-0 custom-light">{{ptn.patientLast}}, {{ptn.patientFirst}}</h4>
+    </div>
+</mat-card-content>
+</mat-card>

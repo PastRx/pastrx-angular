@@ -1,0 +1,65 @@
+.example-full-width {
+    width: 70%;
+  }
+
+.example-half-width {
+    width: 30%;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.head{
+  background: var(--ds-surface-overlay, #f5f5f5);
+    color: #666;
+    font-size: 1.5em;    
+    box-sizing: border-box;
+    height: 56px;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerr {
+  width: 90%;
+  height: 10%;
+  display: flex;
+  border: 2px solid #3572b0 ;
+}
+
+.left-box {
+  width: 15%;
+  background-color: #3572b0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-button {
+  border: 3px solid #3572b0;
+  border-radius: 60%;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.info-icon {
+  color: white; 
+}
+
+.text-box {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  font-size: larger;
+  text-align: left;
+}
+

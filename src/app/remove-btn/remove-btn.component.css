@@ -1,0 +1,48 @@
+/* HEAD */
+.head{
+    background: var(--ds-surface-overlay, #2f5466);
+      color: #ececec;
+      font-size: 1.5em;    
+      box-sizing: border-box;
+      height: 56px;
+  }
+  
+  /* CLOSE BUTTON */
+  
+  .close-button {
+    position: absolute;
+    top: 2px; /* Adjust this value based on your preference */
+    right: 16px; /* Adjust this value based on your preference */
+  }
+  
+  .close-button mat-icon {
+    font-size: 24px; /* Adjust this value based on your preference */
+  }
+  
+  
+  div{
+    display: flex;
+    justify-content: flex-start; /* Adjust as needed: space-around, space-evenly, etc. */
+  }
+  
+  .custom-light {
+    font-weight: normal;
+  }
+  
+  .mat-divider {
+    border-top-color: black;
+    border-top-width: 2px; /* You can adjust the width as needed */
+  }
+  
+  
+  .button-container{
+    display: flex;
+    justify-content : space-around;
+  }
+  
+  .button-container button{
+    flex: 1;
+  }
+  
+  
+  

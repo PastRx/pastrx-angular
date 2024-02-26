@@ -16,6 +16,10 @@ import {UserUpdateComponent} from './administration/user-update/user-update.comp
 import { PracticeSettingsComponent } from './admin/practice-settings/practice-settings.component';
 import { ResourceComponent } from './resource/resource.component';
 import { SetDateComponent } from './common/set-date/set-date.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { BatchpdfComponent } from './batchpdf/batchpdf.component';
+import { RemoveBtnComponent } from './remove-btn/remove-btn.component';
+
 
 const routes: Routes = [
   {
@@ -80,6 +84,18 @@ const routes: Routes = [
     path: 'practice-settings',
     component: PracticeSettingsComponent,
     
+  },
+  {
+    path: 'feedback',
+    component: FeedbackComponent,
+  },
+  {
+    path: 'batchpdf',
+    component: BatchpdfComponent,
+  },
+  {
+    path: 'remove-btn',
+    component: RemoveBtnComponent,
   },
 ];
 

@@ -10,9 +10,24 @@
             <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="settings-applications" routerLink="/admin-dashboard"></mat-icon><small class="text-center">Admin</small></span>        
             <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="date_range" (click)="onClick()"></mat-icon><small class="text-center">Set Date</small></span>
             <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="refresh"></mat-icon><small class="text-center">Refresh</small></span>
-            <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="do_not_disturb_on"></mat-icon><small class="text-center">Remove</small></span>
-            <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="print"></mat-icon><small class="text-center">Batch PDF</small></span>
-            <span class="d-inline-grid"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="report-problem"></mat-icon><small class="text-center">Feedback</small></span>
+            <span class="d-inline-grid me-3">
+            <button mat-icon-button (click)="openRemoveDialog()">
+            <mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="do_not_disturb_on"></mat-icon>
+            </button>
+            <small>Remove</small>
+        </span>
+        <span class="d-inline-grid me-3">
+            <button mat-icon-button (click)="openBatchpdfDialog()">
+            <mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="print"></mat-icon>
+            </button>
+            <small>Batch PDF</small>
+        </span>
+        <span class="d-inline-grid me-3">
+            <button mat-icon-button (click)="openFeedbackDialog()">
+            <mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="report-problem"></mat-icon>
+            </button>
+            <small>Feedback</small>
+        </span>
         </div>
         <div [hidden]="currentRout != '/admin-dashboard'">
             <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="exit_to_app" routerLink="/user-dashboard"></mat-icon><small class="text-center">App</small></span>  

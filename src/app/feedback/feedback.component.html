@@ -1,0 +1,106 @@
+<mat-card>
+    <mat-card-header class="head">
+        <mat-card-title>Please help us improve the application</mat-card-title>
+    </mat-card-header>
+<mat-card-content>
+<mat-dialog-content>
+    <form (ngSubmit)="onSubmit()">
+    <p></p> <P></P>
+
+<div class="body">
+    <div class="containerr">
+      <div class="left-box">
+          <div class="info-button">
+              <mat-icon class="info-icon">info</mat-icon>
+          </div>
+      </div>
+      <div class="text-box">
+          <p>Please provide your feedback below, and don't forget to check the box to "Include data about your current environment"</p>
+      </div>
+    </div>
+    </div>
+
+    <p></p>
+<div>
+    <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Summary</mat-label>
+    <textarea matInput type="text" name="Summary" required [(ngModel)]="request.Summary"></textarea>
+</mat-form-field>
+</div>
+
+<div>
+<mat-form-field class="example-half-width" appearance="outline">
+    <mat-label>Priority</mat-label>
+    <mat-select name="Priority" [(ngModel)]="request.Priority">
+        <mat-option value="Highest">Highest</mat-option>
+        <mat-option value="High">High</mat-option>
+        <mat-option value="Medium">Medium</mat-option>
+        <mat-option value="Lowest">Lowest</mat-option>
+        <mat-option value="Low">Low</mat-option>
+    </mat-select>
+    <button mat-icon-button matTextSuffix (click)="openLinkk()">
+        <mat-icon matSuffix>help</mat-icon>
+    </button> 
+</mat-form-field>    
+</div>
+
+<div>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput type="text" name="Description" [(ngModel)]="request.Description"></textarea>
+        <button mat-icon-button matTextSuffix (click)="openLink()">
+            <mat-icon matSuffix>help</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    
+<div>
+
+        <div class="flex-container">
+            <input matInput (change)="onChange($event)" />
+            <button (click)="onUpload()" class="btn btn-success"> Upload </button>
+        </div>
+        
+        <div class="container text-center jumbotron" *ngIf="shortLink">
+            <h2> Visit Here</h2>
+            <a href="{{shortLink}}">{{shortLink}}</a>
+        </div>
+        
+        <div class="container" *ngIf="loading">
+            <h3>Loading ...</h3>
+        </div>
+        
+        </div>
+
+<div>
+<p></p>
+    <mat-form-field class="example-half-width" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input type="text" name="Name" matInput [(ngModel)]="request.Name">
+    </mat-form-field>
+</div>
+
+<div>
+    <mat-form-field class="example-half-width" appearance="outline">
+      <mat-label>Enter your email</mat-label>
+      <input matInput type="email" name="email" [(ngModel)]="request.email">
+    </mat-form-field>
+</div>
+
+<div>
+    <mat-checkbox [(ngModel)]="request.Checkbox" name="Checkbox" color="primary">
+        Include data about your current environment, like the browser and page URL. This helps us understand your feedback better.
+    </mat-checkbox>
+</div>
+</form>
+</mat-dialog-content>
+</mat-card-content>
+
+<mat-card-footer class="head">
+<mat-dialog-actions>
+<button mat-raised-button (click)="onSubmit()" class="col-2 me-4" type="submit" color="primary">Submit</button>
+<button mat-button routerLink="/user-dashboard" class="col-2" color="primary">Close</button>
+</mat-dialog-actions>
+</mat-card-footer>
+</mat-card>

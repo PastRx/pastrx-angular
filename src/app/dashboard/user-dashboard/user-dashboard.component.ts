@@ -15,12 +15,17 @@ export class UserDashboardComponent {
   appTitle = "Patients for: " + this.datePipe.transform(Date.now(), 'MM/dd/YYYY');
 
   constructor(public auth: AuthService, private api: ApiService, private datePipe: DatePipe) {
+  this.api.patientsUpdated.subscribe((patients: any[]) => {
+    this.patntrespns = patients;
+  });
 
     console.log("test", this.auth);
     this.auth.user$.subscribe(result => {
       console.log("test", this.auth);
     });
-
+  this.api.patientsUpdated.subscribe((patients: any[]) => {
+    this.patntrespns = patients;
+  });
     this.api.listPASTEncounters(
       {
         'targetDate': this.datePipe.transform(Date.now(), 'MM/dd/YYYY'),
@@ -29,13 +34,17 @@ export class UserDashboardComponent {
     ).subscribe({
       next: (res) => {
         console.log(res)
-        this.patntrespns = res.resultMap;
+      //this.patntrespns = res.resultMap; 
+      this.api.setPatients(res.resultMap);
       },
       error: (e) => console.log(e),
     });
 
   }
   ngOnInit() {
+  this.api.patientsUpdated.subscribe((patients: any[]) => {
+    this.patntrespns = patients;
+  });
     // this.api.listPASTEncounters(
     //   {
     //     'targetDate': "08/08/2023",

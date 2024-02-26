@@ -36,7 +36,8 @@
     </div>
 
 </div>
-<div class="row m-0" *ngFor="let ptn of patntrespns" routerLink="/user-details" (click)="setDetailsUser(ptn)">
+<div *ngFor="let ptn of patntrespns">
+<div class="row m-0" *ngIf="ptn.patientHidden != 'true'" routerLink="/user-details">
     <div class="col-6 py-1 ps-4">
         <div class="row">
             <img src="../../../assets/silhouette2.jpg" alt="User" class="imgcnt p-0">
@@ -80,6 +81,7 @@
         </div>
     </div>
     <hr class="mb-0 p-0">
+</div>
 </div>
 <div class="example-button-container">
     <button mat-mini-fab color="primary" routerLink="/add-patient" style="bottom: 40px;position: absolute;left: 15px;" aria-label="Example icon button with a bookmark icon">

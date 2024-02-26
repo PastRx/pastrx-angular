@@ -1,0 +1,50 @@
+<mat-card>
+    <mat-card-header class="head">
+        <mat-card-title>Hide Encounters From List</mat-card-title>
+        <div>
+            <button mat-icon-button class="close-button" (click)="closeDialog()">
+                <mat-icon>close</mat-icon>
+              </button>              
+        </div>
+    </mat-card-header>
+<P></P>
+    <mat-card-content>
+
+        <mat-dialog-actions class="button-container">
+        
+        <!-- <button mat-raised-button color="primary" >REMOVE SELECTED PATIENTS</button>
+         -->
+
+        <button mat-raised-button color="primary" (click)="handleButtonClick()" >
+            {{ showRemovedPatients ? 'UNREMOVE SELECTED PATIENTS' : 'REMOVE SELECTED PATIENTS' }}
+        </button>
+        <button mat-raised-button color="primary" (click)="handleButtonClick1()" >
+            {{ showRemovedPatients ? 'SELECT ALL PATIENTS' : 'SELECT ALL PATIENTS' }}
+        </button>
+        <button mat-raised-button color="primary" (click)="handleButtonClick2()">
+            {{ showRemovedPatients ? 'DESELECT ALL PATIENTS' : 'DESELECT ALL PATIENTS' }}
+        </button>
+          
+
+        </mat-dialog-actions>
+
+        <div>
+            <mat-checkbox [(ngModel)]="showRemovedPatients"  name="Checkbox" color="primary" >
+                Show Removed Patients
+            </mat-checkbox>
+            
+        </div>
+<mat-divider></mat-divider>
+<p></p>
+
+
+<div *ngFor="let ptn of getPatientsToShow()">
+    <!-- <div *ngIf="ptn.patientHidden != 'true'"> -->
+        <mat-checkbox  [(ngModel)]="ptn.selected"></mat-checkbox>
+        <h4 class="mb-0 custom-light">{{ptn.patientLast}}, {{ptn.patientFirst}}</h4>
+    <!-- </div> -->
+</div>
+
+
+</mat-card-content>
+</mat-card>
