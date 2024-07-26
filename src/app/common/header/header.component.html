@@ -9,7 +9,7 @@
         <div [hidden]="currentRout == '/admin-dashboard'">
             <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="settings-applications" routerLink="/admin-dashboard"></mat-icon><small class="text-center">Admin</small></span>        
             <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="date_range" (click)="onClick()"></mat-icon><small class="text-center">Set Date</small></span>
-            <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="refresh"></mat-icon><small class="text-center">Refresh</small></span>
+            <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="refresh" (click)="refreshPage()"></mat-icon><small class="text-center">Refresh</small></span>
             <span class="d-inline-grid me-3">
             <button mat-icon-button (click)="openRemoveDialog()">
             <mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="do_not_disturb_on"></mat-icon>
