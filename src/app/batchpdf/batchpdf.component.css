@@ -42,6 +42,9 @@
   
   .button-container button{
     flex: 1;
+    background-color: #d0a8ad;
+    color: black;
+    font-size: normal;
   }
   
   

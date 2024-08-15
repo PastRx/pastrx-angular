@@ -41,12 +41,12 @@ export class BatchpdfComponent {
       },
       error: (e) => console.log(e),
     });
-    if(this.api.patients.length > 0 || this.totalPatients.length == 0) {
-      this.patntrespns = this.api.patients;
-    }
-    else {
-      this.patntrespns = this.totalPatients;
-     }
+    // if(this.api.patients.length > 0 || this.totalPatients.length == 0) {
+    //   this.patntrespns = this.api.patients;
+    // }
+    // else {
+    //   this.patntrespns = this.totalPatients;
+    //  }
   }
 
   //CLOSE DIALOG

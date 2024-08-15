@@ -4,7 +4,7 @@
       color: #ececec;
       font-size: 1.5em;    
       box-sizing: border-box;
-      height: 56px;
+      height: 46px;
   }
   
   /* CLOSE BUTTON */
@@ -27,6 +27,7 @@
   
   .custom-light {
     font-weight: normal;
+    font-size: large; 
   }
   
   .mat-divider {
@@ -37,11 +38,17 @@
   
   .button-container{
     display: flex;
-    justify-content : space-around;
   }
   
   .button-container button{
     flex: 1;
+    /* margin: 5px; */
+    border: solid;
+    border-width: 1px;
+    border-color: #000000;
+    background: #d0a8ad;
+    font-size: small;
+    color: #000000;
   }
   
   

@@ -8,7 +8,17 @@
 
 .flex-container {
   display: flex;
+  align-items: center; /* align items vertically */
 }
+
+.flex-container.justify-end {
+  justify-content: flex-end; /* align items horizontally to the end (right side) */
+}
+
+.flex-container button {
+  margin-right: 10px; /* adjust the margin for upload button */
+}
+
 
 .head{
   background: var(--ds-surface-overlay, #f5f5f5);

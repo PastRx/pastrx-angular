@@ -26,8 +26,11 @@ export class HeaderComponent {
 
   openFeedbackDialog(): void {
     const dialogRef = this.dialog.open(FeedbackComponent, {
-      width: '70%', // Set the desired width
-      data: {} // You can pass data to the dialog if needed
+      width: '70%',
+      position: {
+        top: '50px', // Set the distance from the top
+        left : '13%'
+      } ,
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -41,8 +44,8 @@ export class HeaderComponent {
   openBatchpdfDialog(): void {
     
     const dialogRef = this.dialog.open(BatchpdfComponent, {
-      width: '50%', // Set the desired width
-      maxHeight : '70%',
+      width: '45%', // Set the desired width
+      minWidth: '568px',
       position: {
       top: '0', // Set the distance from the top
     },
@@ -58,8 +61,8 @@ export class HeaderComponent {
   openRemoveDialog(): void {
     
     const dialogRef = this.dialog.open(RemoveBtnComponent, {
-      width: '50%', // Set the desired width
-      maxHeight : '70%',
+      width: '45%', 
+      minWidth: '568px',
       position: {
       top: '0', // Set the distance from the top
     },
@@ -76,4 +79,11 @@ export class HeaderComponent {
 
     });
   }
+  refreshPage(){
+    // window.location.reload();
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate(['/user-dashboard']);
+
+  });
+}
 }

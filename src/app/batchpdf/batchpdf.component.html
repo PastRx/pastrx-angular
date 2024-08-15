@@ -8,7 +8,6 @@
         </div>
     </mat-card-header>
 
-<p></p>
 
 <mat-card-content>
 
@@ -28,11 +27,11 @@
     </div>
 
     <mat-divider></mat-divider>
-    <p></p>
-
-    <div *ngFor="let ptn of patntrespns" [hidden]="hidePatientsWithNoPMPs && !ptn.hasPMPs">
+    <div *ngFor="let ptn of patntrespns">
+    <div *ngIf="ptn.patientHidden != 'true'" [hidden]="hidePatientsWithNoPMPs && !ptn.hasPMPs">
         <mat-checkbox [(ngModel)]="ptn.selected" (change)="updateCheckboxState(ptn)"></mat-checkbox>
         <h4 class="mb-0 custom-light">{{ptn.patientLast}}, {{ptn.patientFirst}}</h4>
+    </div>
     </div>
 </mat-card-content>
 </mat-card>
