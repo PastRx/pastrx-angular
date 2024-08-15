@@ -52,6 +52,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { BatchpdfComponent } from './batchpdf/batchpdf.component';
 import { RemoveBtnComponent } from './remove-btn/remove-btn.component';
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 
 
 @NgModule({
@@ -111,7 +112,8 @@ import { RemoveBtnComponent } from './remove-btn/remove-btn.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDividerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    NgIdleKeepaliveModule.forRoot()
   ],
   providers: [
     DatePipe,
