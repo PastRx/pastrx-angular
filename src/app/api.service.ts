@@ -60,6 +60,12 @@ export class ApiService {
     const body = null;
     return this.http.post(environment.api+'getPastReportJson?' + new URLSearchParams(cprms), body);
   }
+  listAlerts(parms: any): Observable<any> {
+    console.log(parms);
+    var cprms = this.cleanprms(parms);
+    const body = null;
+    return this.http.post(environment.api+'listAlerts?' + new URLSearchParams(cprms), body);
+  }
   getPMPData(parms: any): Observable<any> {
     console.log(parms);
     var cprms = this.cleanprms(parms);

@@ -22,6 +22,8 @@ export class UserDetailsComponent {
         lng: 70.7512555
     };
     zoom = 6;
+    alertsList: any;
+    alertsCount: any;
     constructor(private api: ApiService) {
         // gapi.client.pastAPI.getPastReportJson({
         //     'patientId': PASTRX.selectedPid,
@@ -43,11 +45,29 @@ export class UserDetailsComponent {
                 console.log(res)
                 window.reactReportData = res;
                 this.shwrpt = true;
+                var alrtresult = res.pastReport.alerts.reduce(function (r, a) {
+                    r[a.alertType] = r[a.alertType] || [];
+                    r[a.alertType].push(a);
+                    return r;
+                }, Object.create(null));
+                console.log(alrtresult);
+                this.alertsList = alrtresult;
+                this.alertsCount = res.pastReport.alerts.length;
                 // this.patntrespns = res.resultMap;
             },
             error: (e) => console.log(e),
         });
-        
+        this.api.listAlerts(
+            {
+                'id': cuser.patientId
+            }
+        ).subscribe({
+            next: (reslistAlerts) => {
+                console.log(reslistAlerts)
+            },
+            error: (e) => console.log(e),
+        });
+
         // {
         //     "pastReport": {
         //         "reportDate": "2024-01-26T00:00:00.000+05:30",

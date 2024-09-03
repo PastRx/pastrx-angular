@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { ApiService } from 'src/app/api.service';
+import { CommonService } from 'src/app/common.service';
 declare var PASTRX: any;
 declare var gapi: any;
 import { DatePipe } from '@angular/common';
@@ -14,7 +15,7 @@ export class UserDashboardComponent {
   patntrespns = [];
   appTitle = "Patients for: " + this.datePipe.transform(Date.now(), 'MM/dd/YYYY');
 
-  constructor(public auth: AuthService, private api: ApiService, private datePipe: DatePipe) {
+  constructor(public auth: AuthService, private api: ApiService, private datePipe: DatePipe, private CommonService:CommonService) {
   this.api.patientsUpdated.subscribe((patients: any[]) => {
     this.patntrespns = patients;
   });
@@ -44,6 +45,7 @@ export class UserDashboardComponent {
   ngOnInit() {
   this.api.patientsUpdated.subscribe((patients: any[]) => {
     this.patntrespns = patients;
+    // this.CommonService.onSucess("Done!");
   });
     // this.api.listPASTEncounters(
     //   {

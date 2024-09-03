@@ -18,7 +18,6 @@ export class AppComponent {
     console.log(PASTRX.logoutURL);
   }
   ngOnInit(){
-    this.setTimeout();
     this.userInactive.subscribe(res => {
     this.auth.logout({ logoutParams: { returnTo: this.doc.location.origin } });
     console.log('user has been inactive for 5 minutes');
