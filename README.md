@@ -81,3 +81,20 @@ If you have found a bug or if you have a feature request, please report them at 
 ## License
 
 This project is licensed under the MIT license. See the [LICENSE](../LICENSE) file for more info.
+
+
+### Test Patients for Demos & Dev
+- (our Development PDMP only checks firstname, lastname, and Date of Birth.  Any zip code will be accepted.  Other fields are currently ignored)
+
+|Lastname|Firstname  |DOB |NOTES|
+|--|--|--|--|
+May|Celsa| 02/09/1988
+Haley|Martine| 07/10/1989
+Stewart| Demetria| 07/24/1966
+Smith| John| 02/13/1918 | No State PDMP Data 
+Wynn|Laraine|05/24/1930| Yes state data.  No Alerts.
+Duplicate|Donald|01/01/2001|Identical Prescriptions Alert ...
+Berry|Shawnda|04/25/1920| Private Pay Alert ...
+Berry|Tijuana|12/29/1990| Unexpected Patient Data, High Dose ...
+PATIENT|UNIQUE|01/01/2001| ERROR: State PMP Unable to determine Unique patient
+ERROR|NETWORK|01/01/2001| Network Error
