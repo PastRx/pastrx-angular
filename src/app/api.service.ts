@@ -192,5 +192,12 @@ export class ApiService {
     return this.http.get('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/listDelegates');
   }
   
+  updateDelegates(parms:any): Observable<any> {
+    console.log(parms);  
+    var cprms = this.cleanprms(parms); 
+    const body=null;
+    return this.http.post('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/updateDelegates',cprms.data);
+    
+  }
   
 }
