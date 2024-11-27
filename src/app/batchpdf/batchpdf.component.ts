@@ -37,16 +37,19 @@ export class BatchpdfComponent {
     ).subscribe({
       next: (res) => {
         this.totalPatients = res.resultMap; 
+        this.patients=res.resultMap;
+        this.patntrespns = this.totalPatients;
+        if(this.patients.length > 0 || this.totalPatients.length == 0) {
+          this.patntrespns = this.patients;
+        }
+        else {
+          this.patntrespns = this.totalPatients;
+         }
         //this.patntrespns = this.patntrespns.filter(ptn => !this.removedPatients.some(removed => removed.id === ptn.id));
       },
       error: (e) => console.log(e),
     });
-    // if(this.api.patients.length > 0 || this.totalPatients.length == 0) {
-    //   this.patntrespns = this.api.patients;
-    // }
-    // else {
-    //   this.patntrespns = this.totalPatients;
-    //  }
+ 
   }
 
   //CLOSE DIALOG
@@ -91,6 +94,11 @@ export class BatchpdfComponent {
         zipString: this.patntrespns[i].patientZipString,
         appointmentTimeString: this.patntrespns[i].appointmentTime,
         endDateString: this.datePipe.transform(oneYearFromNow, 'MM/dd/YYYY'),
+        appointmentId: this.patntrespns[i].id,
+        masquerade: PASTRX.masquerade,
+        targetDate: this.datePipe.transform(Date.now(), 'MM/dd/YYYY'),
+        Authorization: localStorage.getItem("idTokenClaims"),
+        cookieName:  this.patntrespns[i].id,
       };
 
       
@@ -99,7 +107,7 @@ export class BatchpdfComponent {
       pdfPromises.push(
         new Promise((resolve, reject) => {
           // Make an API request to getPMPData using queryParams
-          this.api.getPMPData(queryParams).subscribe(
+          this.api.downloadBatchPDF(queryParams).subscribe(
             (response: any) => {
 
               //console.log(`API Response for patient ${this.patntrespns[i].id}:`, response);

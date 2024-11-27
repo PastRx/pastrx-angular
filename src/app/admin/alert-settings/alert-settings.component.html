@@ -1,0 +1,77 @@
+<div class="card m-2 rounded-0">
+    <div class="m-2">
+        <h5 style="text-align: center;">Alerts Page</h5>
+    </div>
+    <div>
+        <div class="m-2">
+            This is where we can customize the Alert Settings. Alert Filters allow you to filter out types of Alerts
+            that you do not want to see in your practice. PDF Return allows you to select criteria that will be used to
+            automatically push PDFs into your EHR or PMS
+        </div>
+    </div>
+    <div class="card-body p-0 rounded-0 bg-smoke">
+        <h5 class="card-title bg-gray text-white p-2 rounded-0">Alert Settings: Alert Filters</h5>
+        <div class="">
+            <div><em>Select the alerts that you want to <b>suppress</b>. These alerts will not appear in the web app or
+                    in future PDFs.</em></div>
+            <button mat-raised-button style="background-color:  #d0a8ad">Update Alert Filters</button>
+        </div>
+        <div class="col">
+            <!-- <mat-checkbox class="example-margin" [(ngModel)]="isInactiveUsers" (click)="onChange()">Show Inactive Users</mat-checkbox> -->
+            <mat-checkbox class="example-margin" style="border-color: darkred;">Identical Prescription Alert</mat-checkbox>
+        </div>
+        <div class="col">
+            <mat-checkbox class="example-margin" style="border-color: darkred;">Private Pay Alert</mat-checkbox>
+        </div>
+        <div class="col">
+            <mat-checkbox class="example-margin" style="border-color: darkred;">Write/Fill Gap Alert</mat-checkbox>
+        </div>
+        <div class="col">
+            <mat-checkbox class="example-margin" style="border-color: darkred;">Multiple Prescribers Alert</mat-checkbox>
+        </div>
+        <div class="col">
+            <mat-checkbox class="example-margin" style="border-color: darkred;">Overlapping Prescribers Alert</mat-checkbox>
+        </div>
+        <div class="col">
+            <mat-checkbox class="example-margin" style="border-color: darkred;">Overlapping Pharmacies Alert</mat-checkbox>
+        </div>
+        <div class="col">
+            <mat-checkbox class="example-margin" style="border-color: darkred;">High Dose Alert</mat-checkbox>
+        </div>
+        <div class="col">
+            <mat-checkbox class="example-margin" style="border-color: darkred;">"Not Our" Prescriber</mat-checkbox>
+        </div>
+        <div class="col">
+            <mat-checkbox class="example-margin" style="border-color: darkred;">"Not Our" Pharmacy</mat-checkbox>
+        </div>
+        <div class="col">
+            <mat-checkbox class="example-margin" style="border-color: darkred;">Unexpected Patient Data Alert</mat-checkbox>
+        </div>
+    </div>
+    <div class="card-body p-0 rounded-0 bg-smoke">
+        <h5 class="card-title bg-gray text-white p-2 rounded-0">Alert Settings: Configure PDF Return</h5>
+        <div class="">
+            <button mat-raised-button style="background-color:  #d0a8ad">UPDATE CRITICAL FINDINGS</button>
+        </div>
+        <div class="col m-4">
+            <p>Select the settings below to filter PDFs you do not want to push to the EHR.</p>
+            <hr>
+            <div class="col">
+                <mat-checkbox class="example-margin" style="border-color: darkred;"> Do not push 'No Data' PMP Reports to EHR.</mat-checkbox>
+            </div>
+            <div class="col">
+                <mat-checkbox class="example-margin" style="border-color: darkred;"> fixed</mat-checkbox>
+            </div>
+        </div>
+        <div class="col m-4">
+            <p>Select the optional settings below for Athena Health clients only.</p>
+            <hr>
+            <div class="col">
+                <mat-checkbox class="example-margin" style="border-color: darkred;"> Set Priority of PDFs to "High" in Athena.</mat-checkbox>
+            </div>
+            <div class="col">
+                <mat-checkbox class="example-margin" style="border-color: darkred;"> Push Clinical Documents to Athena in Closed status.</mat-checkbox>
+            </div>
+        </div>
+    </div>
+</div>

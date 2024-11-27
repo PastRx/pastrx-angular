@@ -52,7 +52,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { BatchpdfComponent } from './batchpdf/batchpdf.component';
 import { RemoveBtnComponent } from './remove-btn/remove-btn.component';
-
+import{ AlertSettingsComponent} from './admin/alert-settings/alert-settings.component'
 
 @NgModule({
   declarations: [
@@ -80,6 +80,7 @@ import { RemoveBtnComponent } from './remove-btn/remove-btn.component';
     FeedbackComponent,
     BatchpdfComponent,
     RemoveBtnComponent,
+    AlertSettingsComponent
   ],
   imports: [
     BrowserModule,

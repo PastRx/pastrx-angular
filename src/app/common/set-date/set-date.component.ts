@@ -21,7 +21,7 @@ export class SetDateComponent {
       this.selected = null;
     }
   
-    var dateText = "Mon Dec 4 2021"; //this.datepipe.transform(new Date(this.selected), 'EEE MMM d YYYY'); 
+    var dateText = this.datepipe.transform(new Date(this.selected), 'EEE MMM d YYYY'); 
     console.log("Setting target date to: " + dateText);
     PASTRX.targetDate = dateText;
     PASTRX.patientDataList = null;
