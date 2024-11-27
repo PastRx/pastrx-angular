@@ -14,12 +14,12 @@ import { SetDateComponent } from "src/app/common/set-date/set-date.component";
 export class HeaderComponent {
   @Input() inputTitle: string;
   currentRout = this.router.url;
-  constructor(private router: Router ,private dialog: MatDialog) {}
+  constructor(private router: Router, private dialog: MatDialog) { }
   onClick() {
     this.dialog.open(SetDateComponent, {
       width: "500px",
       height: "600px",
-      hasBackdrop:false
+      hasBackdrop: false
     });
   }
   //FEEDBACK
@@ -29,8 +29,8 @@ export class HeaderComponent {
       width: '70%',
       position: {
         top: '50px', // Set the distance from the top
-        left : '13%'
-      } ,
+        left: '13%'
+      },
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -41,49 +41,42 @@ export class HeaderComponent {
 
   //BATCHPDF
 
-  openBatchpdfDialog(): void {
-    
-    const dialogRef = this.dialog.open(BatchpdfComponent, {
-      width: '45%', // Set the desired width
-      minWidth: '568px',
-      position: {
-      top: '0', // Set the distance from the top
-    },
-      //data: {} // You can pass data to the dialog if needed
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // Handle any logic after the dialog is closed, if needed
-      console.log('Dialog closed:', result);
+  openBatchpdfDialog() {
+    this.dialog.open(BatchpdfComponent, {
+      width: "50%",
+      height: "600px",
+      hasBackdrop: false
     });
   }
+
+
 
   openRemoveDialog(): void {
-    
+
     const dialogRef = this.dialog.open(RemoveBtnComponent, {
-      width: '45%', 
+      width: '45%',
       minWidth: '568px',
       position: {
-      top: '0', // Set the distance from the top
-    },
-      data: { showRemovedPatients: false } 
+        top: '0', // Set the distance from the top
+      },
+      data: { showRemovedPatients: false }
       //data: {} // You can pass data to the dialog if needed
     });
 
     dialogRef.afterClosed().subscribe(result => {
       // Handle any logic after the dialog is closed, if needed
       console.log('Dialog closed:', result);
-      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/user-dashboard']);
-    });
+      });
 
     });
   }
-  refreshPage(){
+  refreshPage() {
     // window.location.reload();
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['/user-dashboard']);
 
-  });
-}
+    });
+  }
 }

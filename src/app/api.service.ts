@@ -94,6 +94,15 @@ export class ApiService {
     return this.http.get(environment.api+'getEHRIDsForUser?' + new URLSearchParams(cprms));
   }
   
+  downloadBatchPDF(parms: any): Observable<any> {
+    console.log(parms);
+    var cprms = this.cleanprms(parms);
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/pdf');
+    return this.http.get(environment.api+'pastreport?appointmentId=' + parms.appointmentId + '&masquerade=' + null + '&targetDate=' + parms.targetDate +'&Authorization=' + 'eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwiaXNzIjoiaHR0cHM6Ly9wYXN0cnguYXV0aDAuY29tLyJ9..m5hRjevs9_veP4uq.c4DAuPB9T9Dn9Jhmmv8jirgykZ95yPc0Q2yaJ5iZM6owXQE6SzSM8if4sq673aXVQNocI7RE5kuJ6hKqkN5JsFgtBlllzEad8mNBbpJ3bCQ7UXJvig4qw1sSvx5cXxqR9vdGB_Uf3Nq2IaVDXT7jdbzQB05Qke3pH3jtSMkDiDDlx49opa-n3QRRLxmPmBGZIO4OYnQsdhh5EwMhruFCsfGK6a-x67lmTPGQDYKaDmSFKLRWqa8IOEmAa9Vc0lEKHAZ7Qy_m4yzzJ1rW0G8c-PmiYe9mRsy0hAQn0UWqVyGXlVAG8Q.actXEaMtttVXT0QclPbP2A' + '&cookieName=' + parms.cookieName,{headers: headers, responseType: 'blob'});
+
+  }
+
   hidePatientAppointments(patientList: number[], masquerade: string | null, targetDate: string | null): Observable<any> {
   // Construct query parameters
   console.log("plist" + patientList);
