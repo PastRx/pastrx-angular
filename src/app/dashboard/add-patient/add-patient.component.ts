@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
-import { ApiService } from 'src/app/api.service';
-import { CommonService } from 'src/app/common.service';
+import { Component, OnDestroy } from '@angular/core';
+import { ApiService } from '../../api.service';
+import { CommonService } from '../../common.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 declare var PASTRX: any;
 
 @Component({
@@ -10,13 +12,17 @@ declare var PASTRX: any;
   templateUrl: './add-patient.component.html',
   styleUrls: ['./add-patient.component.css']
 })
-export class AddPatientComponent {
+export class AddPatientComponent implements OnDestroy {
   appTitle = "Submit PMP Request";
   oneYearFromNow = new Date(new Date().setFullYear(new Date().getFullYear() - 1)); 
   resgetPatientNames: any;
+  filteredPatientNames: any[] = [];
   isQuickSearch = false;
   reslistPrescribers: any;
+  filteredPrescribers: any[] = [];
   selptnt:any;
+  private patientInput$ = new Subject<string>();
+  private destroyed$ = new Subject<void>();
   request = {
     firstName: '',
     lastName: '',
@@ -24,10 +30,10 @@ export class AddPatientComponent {
     zipString: '',
     phoneString: '',
     ssn: '',
-    appointmentDate: this.datePipe.transform(Date.now(),'MM/dd/YYYY'),
-    appointmentTime: this.datePipe.transform(Date.now(),'shortTime'),
-    startDate: this.datePipe.transform(this.oneYearFromNow,'MM/dd/YYYY'),
-    endDate: this.datePipe.transform(Date.now(),'MM/dd/YYYY'),
+    appointmentDate: '',
+    appointmentTime: '',
+    startDate: '',
+    endDate: '',
     address: '',
     city: '',
     state: ''
@@ -36,10 +42,19 @@ selectedProvider: any;
   selectedProviderId: any;
   constructor(private api: ApiService,private datePipe: DatePipe, private router: Router, public CommonService:CommonService   ) { }
   ngOnInit() {
+    // Initialize date-related fields now that datePipe is available
+    this.request.appointmentDate = this.datePipe.transform(Date.now(),'MM/dd/YYYY') || '';
+    this.request.appointmentTime = this.datePipe.transform(Date.now(),'shortTime') || '';
+    this.request.startDate = this.datePipe.transform(this.oneYearFromNow,'MM/dd/YYYY') || '';
+    this.request.endDate = this.datePipe.transform(Date.now(),'MM/dd/YYYY') || '';
     this.api.getPatientNames().subscribe({
       next: (res) => {
         this.resgetPatientNames = res.practicePatients;
         console.log(this.resgetPatientNames)
+        // Initialize with first page
+        if (Array.isArray(this.resgetPatientNames)) {
+          this.filteredPatientNames = this.resgetPatientNames.slice(0, 50);
+        }
       },
       error: (err) => console.log(err),
     });
@@ -47,9 +62,67 @@ selectedProvider: any;
       next: (res) => {
         this.reslistPrescribers = res.items;
         console.log(this.reslistPrescribers)
+        if (Array.isArray(this.reslistPrescribers)) {
+          this.filteredPrescribers = this.reslistPrescribers.slice(0, 50);
+        }
       },
       error: (err) => console.log(err),
     });
+
+    // Debounced input stream to filter locally
+    this.patientInput$
+      .pipe(
+        debounceTime(200),
+        distinctUntilChanged(),
+        map((term) => this.filterPatients(term)),
+        takeUntil(this.destroyed$)
+      )
+      .subscribe((results) => {
+        this.filteredPatientNames = results;
+      });
+  }
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
+    this.patientInput$.complete();
+  }
+  onPatientInput(value: string) {
+    this.patientInput$.next(value ?? '');
+  }
+  private filterPatients(term: string): any[] {
+    if (!Array.isArray(this.resgetPatientNames) || this.resgetPatientNames.length === 0) {
+      return [];
+    }
+    const search = (term || '').toLowerCase().trim();
+    if (search.length === 0) {
+      return this.resgetPatientNames.slice(0, 50);
+    }
+    return this.resgetPatientNames
+      .filter((p: any) => (p + '').toLowerCase().includes(search))
+      .slice(0, 50);
+  }
+  onProviderInput(value: string) {
+    const results = this.filterProviders(value ?? '');
+    this.filteredPrescribers = results;
+  }
+  onProviderSelected(provider: any) {
+    this.selectedProvider = provider;
+    this.selectedProviderChange();
+  }
+  displayProvider = (provider?: any) => provider ? `${provider.lastName},${provider.firstName}` : '';
+  private filterProviders(term: string): any[] {
+    if (!Array.isArray(this.reslistPrescribers) || this.reslistPrescribers.length === 0) {
+      return [];
+    }
+    const search = (term || '').toLowerCase().trim();
+    if (search.length === 0) {
+      return this.reslistPrescribers.slice(0, 50);
+    }
+    return this.reslistPrescribers
+      .filter((p: any) =>
+        (`${p.lastName}, ${p.firstName}`.toLowerCase().includes(search))
+      )
+      .slice(0, 50);
   }
   selectedProviderChange() {
 this.selectedProviderId = this.selectedProvider.id;

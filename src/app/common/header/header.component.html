@@ -1,36 +1,56 @@
-<div class="row m-0 bg-gray menucnt py-1">
-    <div class="col-1">
+<div class="row m-0 bg-gray py-2 align-items-center">
+    <div class="col-1 d-flex align-items-center">
         <img alt="PastRx" src="../../../assets/white-logo-80.png" class="logocnt">     
     </div>
-    <div class="col">
-        <h3 class="text-white fw-normal pt-3"> {{inputTitle}}</h3>  
+    <div class="col d-flex align-items-center">
+        <h3 class="text-white fw-normal my-0"> {{inputTitle}}</h3>  
     </div>
-    <div class="col-8 text-right text-white">
-        <div [hidden]="currentRout == '/admin-dashboard'">
-            <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="settings-applications" routerLink="/admin-dashboard"></mat-icon><small class="text-center">Admin</small></span>        
-            <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="date_range" (click)="onClick()"></mat-icon><small class="text-center">Set Date</small></span>
-            <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="refresh" (click)="refreshPage()"></mat-icon><small class="text-center">Refresh</small></span>
-            <span class="d-inline-grid me-3">
-            <button mat-icon-button (click)="openRemoveDialog()">
-            <mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="do_not_disturb_on"></mat-icon>
-            </button>
-            <small>Remove</small>
-        </span>
-        <span class="d-inline-grid me-3">
-            <button mat-icon-button (click)="openBatchpdfDialog()">
-            <mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="print"></mat-icon>
-            </button>
-            <small>Batch PDF</small>
-        </span>
-        <span class="d-inline-grid me-3">
-            <button mat-icon-button (click)="openFeedbackDialog()">
-            <mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="report-problem"></mat-icon>
-            </button>
-            <small>Feedback</small>
-        </span>
+    <div class="col-8 text-white d-flex align-items-center justify-content-end gap-3">
+        <div class="d-flex justify-content-end gap-3" [hidden]="currentRout == '/admin-dashboard'">
+            <span class="d-inline-flex flex-column align-items-center text-center gap-1">
+                <button mat-icon-button class="d-flex align-items-center justify-content-center p-0" routerLink="/admin-dashboard">
+                    <mat-icon aria-hidden="false" class="hicon" fontIcon="settings-applications"></mat-icon>
+                </button>
+                <small class="d-block lh-1 text-nowrap">Admin</small>
+            </span>        
+            <span class="d-inline-flex flex-column align-items-center text-center gap-1">
+                <button mat-icon-button class="d-flex align-items-center justify-content-center p-0" (click)="onClick()">
+                    <mat-icon aria-hidden="false" class="hicon" fontIcon="date_range"></mat-icon>
+                </button>
+                <small class="d-block lh-1 text-nowrap">Set Date</small>
+            </span>
+            <span class="d-inline-flex flex-column align-items-center text-center gap-1">
+                <button mat-icon-button class="d-flex align-items-center justify-content-center p-0" (click)="refreshPage()">
+                    <mat-icon aria-hidden="false" class="hicon" fontIcon="refresh"></mat-icon>
+                </button>
+                <small class="d-block lh-1 text-nowrap">Refresh</small>
+            </span>
+            <span class="d-inline-flex flex-column align-items-center text-center gap-1">
+                <button mat-icon-button class="d-flex align-items-center justify-content-center p-0" (click)="openRemoveDialog()">
+                    <mat-icon aria-hidden="false" class="hicon" fontIcon="do_not_disturb_on"></mat-icon>
+                </button>
+                <small class="d-block lh-1 text-nowrap">Remove</small>
+            </span>
+            <span class="d-inline-flex flex-column align-items-center text-center gap-1">
+                <button mat-icon-button class="d-flex align-items-center justify-content-center p-0" (click)="openBatchpdfDialog()">
+                    <mat-icon aria-hidden="false" class="hicon" fontIcon="print"></mat-icon>
+                </button>
+                <small class="d-block lh-1 text-nowrap">Batch PDF</small>
+            </span>
+            <span class="d-inline-flex flex-column align-items-center text-center gap-1">
+                <button mat-icon-button class="d-flex align-items-center justify-content-center p-0" (click)="openFeedbackDialog()">
+                    <mat-icon aria-hidden="false" class="hicon" fontIcon="report-problem"></mat-icon>
+                </button>
+                <small class="d-block lh-1 text-nowrap">Feedback</small>
+            </span>
         </div>
-        <div [hidden]="currentRout != '/admin-dashboard'">
-            <span class="d-inline-grid me-3"><mat-icon aria-hidden="false" class="hicon mx-auto" fontIcon="exit_to_app" routerLink="/user-dashboard"></mat-icon><small class="text-center">App</small></span>  
+        <div class="d-flex justify-content-end gap-3" [hidden]="currentRout != '/admin-dashboard'">
+            <span class="d-inline-flex flex-column align-items-center text-center gap-1">
+                <button mat-icon-button class="d-flex align-items-center justify-content-center p-0" routerLink="/user-dashboard">
+                    <mat-icon aria-hidden="false" class="hicon" fontIcon="exit_to_app"></mat-icon>
+                </button>
+                <small class="d-block lh-1 text-nowrap">App</small>
+            </span>  
         </div>
     </div>
 </div>
