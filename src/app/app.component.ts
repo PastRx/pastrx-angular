@@ -10,30 +10,30 @@ declare var PASTRX: any;
 })
 export class AppComponent {
   title = 'Auth0 Angular SDK Sample';
-  userActivity;
+  userActivity: ReturnType<typeof setTimeout> | undefined;
   userInactive: Subject<any> = new Subject()
-  
+
   constructor(public auth: AuthService, @Inject(DOCUMENT) private doc: Document) {
-    console.log('user has been inactive for 5 minutes');
+    console.log('user has been inactive for 1 hour');
     console.log(PASTRX.logoutURL);
   }
-  ngOnInit(){
+  ngOnInit() {
     this.userInactive.subscribe(res => {
-    this.auth.logout({ logoutParams: { returnTo: this.doc.location.origin } });
-    console.log('user has been inactive for 5 minutes');
-});
-
+      this.auth.logout({ logoutParams: { returnTo: this.doc.location.origin } });
+      console.log('user has been inactive for 1 hour');
+    });
+    this.setTimeout();
   }
   setTimeout() {
-    this.userActivity = setTimeout(() => this.userInactive.next(undefined), 300000);
+    this.userActivity = setTimeout(() => this.userInactive.next(undefined), 3600000);
   }
-  
-  @HostListener('window:mousemove') 
-  @HostListener('window:keydown') 
+
+  @HostListener('window:mousemove')
+  @HostListener('window:keydown')
   refreshUserState() {
     clearTimeout(this.userActivity);
     this.setTimeout();
   }
 
- 
+
 }

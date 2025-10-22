@@ -35,9 +35,10 @@
               </mat-form-field> -->
             <mat-form-field class="w-25">
                 <mat-label>Search</mat-label>
-                <mat-select (selectionChange)="updateFields()" [(ngModel)]="selptnt">
-                    <mat-option value="{{pts}}" *ngFor="let pts of resgetPatientNames">{{pts}}</mat-option>
-                </mat-select>
+                <input type="text" matInput [(ngModel)]="selptnt" (input)="onPatientInput($event.target.value)" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="updateFields()">
+                    <mat-option *ngFor="let pts of filteredPatientNames" [value]="pts">{{pts}}</mat-option>
+                </mat-autocomplete>
             </mat-form-field>
         </div>
         <hr>
@@ -67,9 +68,10 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Provider</mat-label>
-                <mat-select (selectionChange)="selectedProviderChange()" [(ngModel)]="selectedProvider">
-                    <mat-option [value]="pres" *ngFor="let pres of reslistPrescribers">{{pres.lastName}},{{pres.firstName}}</mat-option>
-                </mat-select>
+                <input matInput [ngModel]="selectedProvider" (input)="onProviderInput($event.target.value)" [matAutocomplete]="providerAuto">
+                <mat-autocomplete #providerAuto="matAutocomplete" [displayWith]="displayProvider" (optionSelected)="onProviderSelected($event.option.value)">
+                    <mat-option *ngFor="let pres of filteredPrescribers" [value]="pres">{{pres.lastName}},{{pres.firstName}}</mat-option>
+                </mat-autocomplete>
             </mat-form-field>
         </div>
         <div class="col">

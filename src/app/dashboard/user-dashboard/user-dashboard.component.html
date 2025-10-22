@@ -1,5 +1,5 @@
 <app-header [inputTitle]="appTitle"></app-header>
-<div class="row m-0 headcnt">
+<div class="row m-0 headcnt pt-1">
     <div class="col-6 pt-3 ps-4">
         Patient Name
     </div>
@@ -37,7 +37,7 @@
 
 </div>
 <div *ngFor="let ptn of patntrespns">
-<div class="row m-0" *ngIf="ptn.patientHidden != 'true'" routerLink="/user-details">
+<div class="row m-0" *ngIf="ptn.patientHidden != 'true'" (click)="setDetailsUser(ptn)" style="cursor: pointer;">
     <div class="col-6 py-1 ps-4">
         <div class="row">
             <img src="../../../assets/silhouette2.jpg" alt="User" class="imgcnt p-0">

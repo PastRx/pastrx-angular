@@ -8,7 +8,7 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
-
+public currentYear: number = new Date().getFullYear();
   constructor(public auth: AuthService, @Inject(DOCUMENT) private doc: Document) {
     console.log("test", this.auth);
     this.auth.user$.subscribe(result => {

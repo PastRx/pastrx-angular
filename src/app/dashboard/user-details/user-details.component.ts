@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ApiService } from 'src/app/api.service';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../../api.service';
 // declare var PASTRX: any;
 declare global {
     interface Window { reactReportData: any; }
@@ -38,7 +39,7 @@ export class UserDetailsComponent {
     PrivatePay: any[];
     alertstitle: string;
     numAlerts: number;
-    constructor(private api: ApiService) {
+    constructor(private api: ApiService, private route: ActivatedRoute) {
         // gapi.client.pastAPI.getPastReportJson({
         //     'patientId': PASTRX.selectedPid,
         //     'masquerade': PASTRX.masquerade,
@@ -46,13 +47,21 @@ export class UserDetailsComponent {
         // })
     }
     ngOnInit() {
-        var cuser = JSON.parse(localStorage.getItem("usrC"));
-        console.log(cuser);
+        // Get parameters from query string instead of localStorage
+        const patientId = this.route.snapshot.queryParams['patientId'];
+        const appointmentId = this.route.snapshot.queryParams['appointmentId'];
+        
+        if (!patientId || !appointmentId) {
+            console.warn('Missing required query parameters: patientId and/or appointmentId');
+            return;
+        }
+        
+        console.log('Query params - patientId:', patientId, 'appointmentId:', appointmentId);
         this.api.getPastReportJson(
             {
-                'patientId': cuser.patientId,
+                'patientId': patientId,
+                'appointmentId': appointmentId
                 // 'masquerade': PASTRX.masquerade,
-                'appointmentId': cuser.id
             }
         ).subscribe({
             next: (res) => {
