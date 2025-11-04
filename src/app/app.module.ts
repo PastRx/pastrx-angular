@@ -35,6 +35,7 @@ import { DatePipe } from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { PatientDetailsComponent } from './dashboard/patient-details/patient-details.component';
+import { PatientMapComponent } from './dashboard/patient-details/patient-map/patient-map.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { PracticeSettingsComponent } from './admin/practice-settings/practice-settings.component';
 import {AddUserComponent} from './administration/add-user/add-user.component';
@@ -70,6 +71,7 @@ import{ AlertSettingsComponent} from './admin/alert-settings/alert-settings.comp
     HeaderComponent,
     AddPatientComponent,
     PatientDetailsComponent,
+    PatientMapComponent,
     AdminDashboardComponent,
     AddUserComponent,
     UserListComponent,

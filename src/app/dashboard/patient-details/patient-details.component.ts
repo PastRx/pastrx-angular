@@ -18,14 +18,11 @@ export class PatientDetailsComponent {
     showPMP = false;
     showAlerts = false;
     appTitle = "Patients Details";
-    center: google.maps.LatLngLiteral = {
-        lat: 22.2736308,
-        lng: 70.7512555
-    };
-    zoom = 6;
     alertsList: any[] = [];
     alertsCount: any;
     alerts: any;
+    reportData: any;
+    patientName: string = '';
     NotOurPrescription: any[] = [];
     NotOurPharmacy: any[] = [];
     UnexpectedPatient: any[] = [];
@@ -67,8 +64,18 @@ export class PatientDetailsComponent {
             next: (res) => {
                 console.log(res)
                 window.reactReportData = res;
+                this.reportData = res;
                 this.shwrpt = true;
                 this.alerts = res.pastReport.alerts;
+                // Extract patient name
+                if (res.pastReport?.patient) {
+                    const patient = res.pastReport.patient;
+                    if (patient.firstName && patient.lastName) {
+                        this.patientName = `${patient.firstName} ${patient.lastName}`;
+                    } else if (patient.name) {
+                        this.patientName = patient.name;
+                    }
+                }
                 var modAlerts = [];
                 this.NotOurPrescription = [];
                 this.NotOurPharmacy = [];
