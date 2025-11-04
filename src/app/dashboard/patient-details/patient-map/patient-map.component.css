@@ -1,0 +1,75 @@
+/* Map component styles */
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+/* When col-6 (not expanded) - fixed height to prevent overflow */
+:host.col-6 {
+  height: auto;
+}
+
+/* When col-12 (expanded) - fill available height */
+:host.col-12 {
+  height: 100%;
+  flex: 1;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.card.h-100 {
+  height: 100%;
+  flex: 1;
+}
+
+.card:not(.h-100) {
+  height: auto;
+}
+
+.card-body {
+  display: flex;
+  padding: 0 !important;
+}
+
+.card-body.h-100 {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+.card-body:not(.h-100) {
+  height: auto;
+  overflow: visible;
+}
+
+google-map {
+  width: 100%;
+  display: block;
+}
+
+.card-body.h-100 google-map {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+}
+
+/* Override Google Maps container height */
+::ng-deep google-map .map-container {
+  height: 100% !important;
+  max-height: 100% !important;
+}
+
+.card-body.h-100 ::ng-deep .map-container {
+  height: 100% !important;
+}
+
+.card-body:not(.h-100) ::ng-deep .map-container {
+  height: 300px !important;
+  max-height: 300px !important;
+}
+

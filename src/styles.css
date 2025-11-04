@@ -79,3 +79,15 @@ label {
 
     }
 }
+
+.app-shell {
+    min-height: 100vh;
+    padding-top: 70px;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+}
+
+.app-shell > * {
+    display: block;
+}
+

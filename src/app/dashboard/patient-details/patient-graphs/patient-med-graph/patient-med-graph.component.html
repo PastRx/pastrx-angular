@@ -1,0 +1,24 @@
+<div class="d-flex flex-row">
+    <div class="d-flex flex-column">
+        <div class="label OPIOID">Opioid</div>
+        <div class="legend">
+            <span class="legend-title">Legend</span>
+            <svg width="24" height="24" viewBox="0 0 50 50">
+                <circle #redAlert cx="25" cy="25" r="18" fill="#990000" />
+            </svg>
+            <div>High Dose<br>or<br>Multiple Prescriber Same Category</div>
+            <svg width="24" height="24" viewBox="0 0 50 50">
+                <circle #yellowAlert cx="25" cy="25" r="18" fill="#999900" />
+            </svg>
+            <div>Multiple Prescriber Different Category</div>
+            <svg width="24" height="24" viewBox="0 0 50 50">
+                <circle #blueAlert cx="25" cy="25" r="18" fill="#000099" />
+            </svg>
+            <div>Single Prescriber</div>
+        </div>
+    </div>
+    <div class="canvas-container">
+        <div id="loadingDialogue" [hidden]="!isLoading()">Loading Data...</div>
+        <canvas #medCanvas id="medCanvas">Your browser does not support the HTML5 canvas tag.</canvas>
+    </div>
+</div>

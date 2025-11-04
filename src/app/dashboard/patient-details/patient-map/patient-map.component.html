@@ -1,0 +1,22 @@
+    <div class="card rounded-0 mat-elevation-z4" [ngClass]="{'h-100': showMaps}">
+        <div class="card-header bg-gray rounded-0 text-white py-1 px-2 fw-500">
+            Map
+            <mat-icon aria-hidden="false" class="hicon float-end ms-2" [hidden]="showMaps == true" fontIcon="web_asset" (click)="toggleMap()"></mat-icon>
+            <mat-icon aria-hidden="false" class="hicon float-end ms-2" [hidden]="showMaps == false" fontIcon="close" (click)="toggleMap()"></mat-icon>
+            <mat-icon aria-hidden="false" class="hicon float-end" fontIcon="help"></mat-icon>
+        </div>
+        <div class="card-body" [ngClass]="{'h-100 p-0': showMaps, 'p-0': !showMaps}" [style.height]="!showMaps ? '300px' : null">
+            <google-map width="100%" [style.height]="showMaps ? '100%' : '300px'" [center]="center" [zoom]="zoom">
+                <map-marker
+                    *ngFor="let marker of markers"
+                    [position]="marker.position"
+                    [title]="marker.title"
+                    [options]="marker.options">
+                    <map-info-window *ngIf="marker.infoContent">
+                        <div [innerHTML]="marker.infoContent"></div>
+                    </map-info-window>
+                </map-marker>
+            </google-map>
+        </div>
+    </div>
+

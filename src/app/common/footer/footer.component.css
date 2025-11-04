@@ -1,3 +1,13 @@
+:host {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 30px;
+    display: block;
+}
 
 .logocntbtm{
     width: 72px;
