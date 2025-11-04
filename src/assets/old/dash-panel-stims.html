@@ -1,0 +1,85 @@
+<link rel="import" href="../stylesheets/pastrx-shared-styles.html">
+
+<dom-module id="dash-panel-stims">
+    <style  include="pastrx-shared-styles">
+        :host {
+            display: block;
+            padding-left: 0px;
+            text-align: center;
+            overflow: hidden;
+            @apply(--layout-horizontal);
+        }
+
+        canvas {
+            width: 98%;
+            height: 24px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+        .container{
+            position: relative;
+            width: 100%;
+        }
+    </style>
+
+
+    <template>
+        <div class="label STIMULANT">STIM</div>
+        <div class="container">
+            <div id="loadingDialogue" class="">Loading Data...</div>
+            <canvas id="stimCanvas">Your browser does not support the HTML5 canvas tag.</canvas>
+        </div>
+    </template>
+
+</dom-module>
+
+<script>
+    window.addEventListener('polymer-ready', function(e) {
+        console.log('polymer-ready('+this.offsetWidth+')');
+    });
+
+    Polymer({
+        is: "dash-panel-stims",
+        created: function() {
+            },
+        ready: function() {
+
+        },
+
+        attached: function() {
+            window.addEventListener("resize", function (e) {
+                this.refresh();
+            }.bind(this));
+            var m = this.$.stimCanvas;
+            m.addEventListener('click', function (e) {
+                        this.on_canvas_click(e);}.bind(this)
+                    , false);
+        },
+
+        detached: function() { console.log('detached:'); console.log(this.$.stimCanvas);  },
+        on_canvas_click: function(ev) {
+            var m = this.$.stimCanvas;
+            PASTRX.selectActivesInCanvas(ev, m);
+        },
+
+        refresh: function() {
+            var p = document.querySelector('iron-pages');
+            if(p.selected == 2) { //Only reload if on the page.  NOTE now on the integrated dash.
+                console.log('refresh:');
+                var m = this.$.stimCanvas;
+                PASTRX.clearCanvas(m);
+                if(this.clientHeight != undefined && this.clientHeight > 10){
+                    m.parentNode.style.height = this.clientHeight + "px";
+                }
+                var panelWidth = $('#stims').outerWidth();
+                var legendPanelWidth = 50;
+                var canvasWidth = panelWidth - legendPanelWidth - 10; //leave padding space
+                document.querySelector('#stimCanvas').style.width = canvasWidth + "px";
+                PASTRX.plotStimOrBenzoData(PASTRX.tdeGraphData, m, "STIMULANT");
+
+            }
+        }
+    });
+</script>
+

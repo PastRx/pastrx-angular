@@ -1,0 +1,114 @@
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../elements/dash-panel-med.html">
+<link rel="import" href="../elements/dash-panel-benzos.html">
+<link rel="import" href="../elements/dash-panel-stims.html">
+<link rel="import" href="../elements/dash-panel-pharmacies.html">
+<link rel="import" href="../elements/dash-panel-prescribers.html">
+
+<dom-module id="dash-panel-graphs">
+    <style>
+        :host {
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+
+            -ms-flex-direction: column;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+        }
+        #fullgraphs{
+        @apply(--layout-vertical);
+        @apply(--layout-center);
+        }
+        #med{
+            margin: 2px 0 2px 2px;
+            width:100%;
+            height:250px;
+            position: relative;
+        }
+        #benzos{
+            margin: 0 0 2px 2px;
+            width:100%;
+            height:27px;
+            position: relative;
+        }
+        #stims{
+            margin: 0 0 2px 2px;
+            width:100%;
+            height:27px;
+            position: relative;
+        }
+        #scribers{
+            margin: 0 0 2px 2px;
+            width:100%;
+            height:46px;
+            position: relative;
+        }
+        #pharms{
+            margin: 0 0 0 2px;
+            width:100%;
+            height:46px;
+            position: relative;
+        }
+        .scriptGraph{
+            border-bottom: solid;
+            border-width: 1px;
+        }
+
+    </style>
+
+    <template>
+        <panel-label-standard id="label" mode="{{mode}}" class="paper-header">Prescriptions Overview</panel-label-standard>
+        <div id="fullgraphs">
+            <dash-panel-med id="med" class="scriptGraph"></dash-panel-med>
+            <dash-panel-benzos id="benzos" class="scriptGraph"></dash-panel-benzos>
+            <dash-panel-stims id="stims" class="scriptGraph"></dash-panel-stims>
+            <dash-panel-prescribers id="scribers" class="scriptGraph"></dash-panel-prescribers>
+            <dash-panel-pharmacies id="pharms" class="scriptGraph"></dash-panel-pharmacies>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: "dash-panel-graphs",
+            listeners: {
+                'help': 'helpHandler',
+                'openclose': 'clickHandler'
+            },
+            properties: {
+                mode: { type: String },
+            },
+            helpHandler: function() {
+                console.log("help me");
+                showHelpPage('scripts');
+            },
+
+            refresh: function() {
+                this.$.med.refresh();
+                this.$.benzos.refresh();
+                this.$.stims.refresh();
+                this.$.scribers.refresh();
+                this.$.pharms.refresh();
+            },
+            clearCanvases: function(){
+                var m = this.$.med.$.medCanvas;
+                PASTRX.clearCanvas(m);
+                var b = this.$.benzos.$.benzoCanvas;
+                PASTRX.clearCanvas(b);
+                var s = this.$.stims.$.stimCanvas;
+                PASTRX.clearCanvas(s);
+                var pr = this.$.scribers.$.prescribersCanvas;
+                PASTRX.clearCanvas(pr);
+                var ph = this.$.pharms.$.pharmaciesCanvas;
+                PASTRX.clearCanvas(ph);
+            },
+            attached: function() {
+                window.addEventListener("paper-responsive-change", function (e) {
+                    console.log("drawer-panel-triggered refresh")
+                    setTimeout(function() {
+                        document.querySelector('#graphPanel').refresh();
+                    }, 500);//waits for transition to resize canvas before refreshing.
+                });
+            }
+        });
+    </script>
+</dom-module>

@@ -1,0 +1,13 @@
+<div class="d-flex flex-column">
+    <div class="card-header bg-gray rounded-0 text-white py-1 px-2 fw-500">
+        Prescriptions Overview
+        <mat-icon aria-hidden="false" class="hicon float-end" fontIcon="help"></mat-icon>
+    </div>
+    <div id="fullgraphs" class="d-flex flex-column align-items-center">
+        <app-patient-med-graph #medGraph id="med" class="script-graph" [tdeGraphData]="tdeGraphData"></app-patient-med-graph>
+        <app-patient-benzos-graph #benzosGraph id="benzos" class="script-graph" [tdeGraphData]="tdeGraphData"></app-patient-benzos-graph>
+        <app-patient-stims-graph #stimsGraph id="stims" class="script-graph" [tdeGraphData]="tdeGraphData"></app-patient-stims-graph>
+        <app-patient-prescribers-graph #prescribersGraph id="scribers" class="script-graph" [tdeGraphData]="tdeGraphData"></app-patient-prescribers-graph>
+        <app-patient-pharmacies-graph #pharmaciesGraph id="pharms" class="script-graph" [tdeGraphData]="tdeGraphData"></app-patient-pharmacies-graph>
+    </div>
+</div>

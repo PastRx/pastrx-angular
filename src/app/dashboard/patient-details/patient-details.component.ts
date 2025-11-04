@@ -3,7 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../api.service';
 // declare var PASTRX: any;
 declare global {
-    interface Window { reactReportData: any; }
+    interface Window { 
+        reactReportData: any;
+        PASTRX: any;
+    }
 }
 
 window.reactReportData = window.reactReportData || {};
@@ -23,6 +26,8 @@ export class PatientDetailsComponent {
     alerts: any;
     reportData: any;
     patientName: string = '';
+    tdeGraphData: any;
+    loadingAlerts: boolean = true;
     NotOurPrescription: any[] = [];
     NotOurPharmacy: any[] = [];
     UnexpectedPatient: any[] = [];
@@ -67,6 +72,19 @@ export class PatientDetailsComponent {
                 this.reportData = res;
                 this.shwrpt = true;
                 this.alerts = res.pastReport.alerts;
+                this.loadingAlerts = false;
+                // Set PASTRX.PASTReport for compatibility with existing code
+                if (window.PASTRX) {
+                    window.PASTRX.PASTReport = res.pastReport;
+                }
+                
+                // Load TDE graph data if available
+                if (window.PASTRX && window.PASTRX.tdeGraphData) {
+                    this.tdeGraphData = window.PASTRX.tdeGraphData;
+                } else if (res.pastReport?.pmpReportId) {
+                    // Try to load TDE graph data
+                    this.loadTDEGraphData(res.pastReport.pmpReportId);
+                }
                 // Extract patient name
                 if (res.pastReport?.patient) {
                     const patient = res.pastReport.patient;
@@ -179,9 +197,67 @@ export class PatientDetailsComponent {
                     this.alertstitle = "No Alerts Found";
                 }
             },
-            error: (e) => console.log(e),
+            error: (e) => {
+                console.log(e);
+                this.loadingAlerts = false;
+            },
         });
 
+    }
+
+    loadTDEGraphData(pmpReportId: string) {
+        // Use Angular API service to load TDE graph data
+        this.api.getTDEGraphData({
+            'id': pmpReportId
+        }).subscribe({
+            next: (resp) => {
+                console.log('TDE Graph Data Response:', resp);
+                // Handle different response formats
+                let graphData: any = null;
+                if (resp && resp.items && resp.items.length === 2) {
+                    graphData = resp.items[1];
+                    if (window.PASTRX) {
+                        window.PASTRX.medThresh = resp.items[0];
+                        window.PASTRX.tdeGraphData = graphData;
+                    }
+                } else if (resp && Array.isArray(resp) && resp.length === 2) {
+                    graphData = resp[1];
+                    if (window.PASTRX) {
+                        window.PASTRX.medThresh = resp[0];
+                        window.PASTRX.tdeGraphData = graphData;
+                    }
+                } else if (resp && resp.data) {
+                    graphData = resp.data;
+                    if (window.PASTRX) {
+                        window.PASTRX.tdeGraphData = graphData;
+                    }
+                }
+                
+                if (graphData) {
+                    // Set in component - ensure it's an array
+                    this.tdeGraphData = Array.isArray(graphData) ? graphData : [];
+                    console.log('TDE Graph Data loaded:', this.tdeGraphData.length, 'items');
+                } else {
+                    console.warn('Could not extract graph data from response:', resp);
+                    if (window.PASTRX) {
+                        window.PASTRX.medThresh = 400;
+                        window.PASTRX.tdeGraphData = [];
+                    }
+                    this.tdeGraphData = [];
+                }
+            },
+            error: (e) => {
+                console.error('Error loading TDE graph data:', e);
+                // Fallback: try using PASTRX method if available
+                if (window.PASTRX && (window as any).gapi && window.PASTRX.loadTDEGraphData) {
+                    window.PASTRX.loadTDEGraphData(null, null, () => {
+                        if (window.PASTRX.tdeGraphData) {
+                            this.tdeGraphData = window.PASTRX.tdeGraphData;
+                        }
+                    });
+                }
+            }
+        });
     }
 }
 

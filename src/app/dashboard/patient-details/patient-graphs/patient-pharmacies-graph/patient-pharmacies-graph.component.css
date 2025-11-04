@@ -1,0 +1,44 @@
+:host {
+    display: block;
+    padding-left: 0px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.canvas-container {
+    position: relative;
+    width: 100%;
+    height: 46px;
+}
+
+canvas {
+    width: 98%;
+    height: 46px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.label {
+    font-weight: normal;
+    font-size: 14px;
+    padding: 2px;
+    text-align: center;
+    color: white;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    background-color: #808080; /* gray */
+    margin: 0 2px;
+}
+
+#loadingDialogue {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+

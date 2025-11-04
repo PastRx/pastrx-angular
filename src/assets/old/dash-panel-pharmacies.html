@@ -1,0 +1,78 @@
+<link rel="import" href="../stylesheets/pastrx-shared-styles.html">
+
+<dom-module id="dash-panel-pharmacies">
+    <style include="pastrx-shared-styles">
+        :host {
+            display: block;
+            padding-left: 0px;
+            text-align: center;
+            overflow: hidden;
+            @apply(--layout-horizontal);
+        }
+
+        canvas {
+            width: 98%;
+            height: 46px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+        .container{
+            position: relative;
+            width: 100%;
+        }
+    </style>
+    <template>
+        <div class="label">PHRM</div>
+        <div class="container">
+            <div id="loadingDialogue" class="">Loading Data...</div>
+            <canvas id="pharmaciesCanvas">Your browser does not support the HTML5 canvas tag.</canvas>
+        </div>
+    </template>
+</dom-module>
+<script>
+    window.addEventListener('polymer-ready', function(e) {
+        console.log('polymer-ready('+this.offsetWidth+')');
+    });
+
+    Polymer({
+        is: "dash-panel-pharmacies",
+        created: function() {
+            },
+        ready: function() {
+
+            },
+        attached: function() {
+            window.addEventListener("resize", function (e) {
+                this.refresh() ;
+            }.bind(this));
+            var m = this.$.pharmaciesCanvas;
+            m.addEventListener('click', function (e) {
+                        this.on_canvas_click(e);}.bind(this)
+                    , false);
+        },
+        on_canvas_click: function(ev) {
+            var m = this.$.pharmaciesCanvas;
+            PASTRX.selectActivesInCanvas(ev, m);
+        },
+        detached: function() { console.log('detached:'); console.log(this.$.pharmaciesCanvas);  },
+        refresh: function() {
+            var p = document.querySelector('iron-pages');
+            if(p.selected == 2) { //Only reload if on the page.  NOTE now on the integrated dash.
+                console.log('dash-panel-pharmacies - refresh:');
+                var m = this.$.pharmaciesCanvas;
+                PASTRX.clearCanvas(m);
+
+                //resize parent node.  positioned to bottom of it.
+                if (this.clientHeight != undefined && this.clientHeight > 10) {
+                    m.parentNode.style.height = this.clientHeight + "px";
+                }
+                var panelWidth = $('#pharms').outerWidth();
+                var legendPanelWidth = 50;
+                var canvasWidth = panelWidth - legendPanelWidth - 10; //leave padding space
+                document.querySelector('#pharmaciesCanvas').style.width = canvasWidth + "px";
+                PASTRX.plotPharmaciesData(PASTRX.tdeGraphData, m, "Pharmacies");
+            }
+        }
+    });
+</script>

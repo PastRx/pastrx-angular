@@ -1,0 +1,51 @@
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+#fullgraphs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#med {
+    margin: 2px 0 2px 2px;
+    width: 100%;
+    height: 250px;
+    position: relative;
+}
+
+#benzos {
+    margin: 0 0 2px 2px;
+    width: 100%;
+    height: 27px;
+    position: relative;
+}
+
+#stims {
+    margin: 0 0 2px 2px;
+    width: 100%;
+    height: 27px;
+    position: relative;
+}
+
+#scribers {
+    margin: 0 0 2px 2px;
+    width: 100%;
+    height: 46px;
+    position: relative;
+}
+
+#pharms {
+    margin: 0 0 0 2px;
+    width: 100%;
+    height: 46px;
+    position: relative;
+}
+
+.script-graph {
+    border-bottom: solid;
+    border-width: 1px;
+}
+

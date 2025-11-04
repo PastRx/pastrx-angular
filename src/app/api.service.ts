@@ -201,5 +201,11 @@ export class ApiService {
     return this.http.get('https://pastrx-qa.appspot.com/_ah/api/pastAPI/v2.40/listDelegates');
   }
   
+  getTDEGraphData(parms: any): Observable<any> {
+    console.log(parms);
+    var cprms = this.cleanprms(parms);
+    return this.http.get(environment.api+'getTDEGraphData?' + new URLSearchParams(cprms));
+  }
+  
   
 }

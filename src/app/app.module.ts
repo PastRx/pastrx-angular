@@ -53,7 +53,13 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { BatchpdfComponent } from './batchpdf/batchpdf.component';
 import { RemoveBtnComponent } from './remove-btn/remove-btn.component';
-import{ AlertSettingsComponent} from './admin/alert-settings/alert-settings.component'
+import{ AlertSettingsComponent} from './admin/alert-settings/alert-settings.component';
+import { PatientGraphsComponent } from './dashboard/patient-details/patient-graphs/patient-graphs.component';
+import { PatientMedGraphComponent } from './dashboard/patient-details/patient-graphs/patient-med-graph/patient-med-graph.component';
+import { PatientBenzosGraphComponent } from './dashboard/patient-details/patient-graphs/patient-benzos-graph/patient-benzos-graph.component';
+import { PatientStimsGraphComponent } from './dashboard/patient-details/patient-graphs/patient-stims-graph/patient-stims-graph.component';
+import { PatientPrescribersGraphComponent } from './dashboard/patient-details/patient-graphs/patient-prescribers-graph/patient-prescribers-graph.component';
+import { PatientPharmaciesGraphComponent } from './dashboard/patient-details/patient-graphs/patient-pharmacies-graph/patient-pharmacies-graph.component'
 
 @NgModule({
   declarations: [
@@ -82,7 +88,13 @@ import{ AlertSettingsComponent} from './admin/alert-settings/alert-settings.comp
     FeedbackComponent,
     BatchpdfComponent,
     RemoveBtnComponent,
-    AlertSettingsComponent
+    AlertSettingsComponent,
+    PatientGraphsComponent,
+    PatientMedGraphComponent,
+    PatientBenzosGraphComponent,
+    PatientStimsGraphComponent,
+    PatientPrescribersGraphComponent,
+    PatientPharmaciesGraphComponent
   ],
   imports: [
     BrowserModule,
