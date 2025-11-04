@@ -21,41 +21,22 @@
             </div>
             <div class="card-body">
                 <div class="accordion accordion-flush row" id="accordionFlushExample">
-                    <div class="accordion-item" *ngFor="let alrt of alertsList">
+                    <div class="accordion-item px-1" *ngFor="let alertGroup of alertsList; let i = index">
                         <h2 class="accordion-header">
-                            <button class="accordion-button collapsed p-2" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                aria-controls="flush-collapseOne">
-                                <b>{{alrt.length}} </b> <span class="fw-normal ms-2">{{alrt.typeString}}</span>
+                            <button class="accordion-button collapsed p-2" type="button" [attr.data-bs-toggle]="'collapse'"
+                                [attr.data-bs-target]="'#flush-collapse' + i" aria-expanded="false"
+                                [attr.aria-controls]="'flush-collapse' + i">
+                                <b>{{alertGroup.count}} </b> <span class="fw-normal ms-2">{{alertGroup.typeString}}</span>
                             </button>
                         </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                        <div [id]="'flush-collapse' + i" class="accordion-collapse collapse"
                             data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
-                                <small class="row">Prescriber: BROCK, MARQUITTA with DEA: MP1714460 for 3 Prescriptions.
+                                <small class="row d-block mb-2" *ngFor="let alert of alertGroup.alerts">
+                                    <span *ngIf="alert.narrative">{{alert.narrative}}</span>
+                                    <span *ngIf="!alert.narrative && alert.description">{{alert.description}}</span>
+                                    <span *ngIf="!alert.narrative && !alert.description">{{alert.typeString}}</span>
                                 </small>
-                                <small class="row">Prescriber: NUNEZ, TAWNYA with DEA: MH3849176 for 2 Prescriptions.
-                                </small>
-                                <small class="row">Prescriber: , with DEA: BC7786140 for OXYCODONE HYDROCHLORIDE, 5 MG,
-                                    TABL</small>
-                                <small class="row">Prescriber: WITT, MARNA with DEA: BS0422775 for 2 Prescriptions.
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed p-2" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                aria-controls="flush-collapseTwo">
-                                <b>1</b> <span class="fw-normal ms-2"> Not Our Pharmacy</span>
-                            </button>
-                        </h2>
-                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                <small class="row">Pharmacy: WALGREEN ARIZONA DRUG CO. with DEA: AW0572518 for 8
-                                    Prescriptions.</small>
                             </div>
                         </div>
                     </div>
@@ -79,7 +60,7 @@
             </div>
         </div>
     </div>
-    <div class="col-6 p-2" [ngClass]="{'col-12':showPMP,'col-6':!showPMP}" [hidden]="showMaps">
+    <div class="col-6 p-2" [ngClass]="{'col-12':showPMP,'col-6':!showMaps}" [hidden]="showMaps">
         <div class="card rounded-0 mat-elevation-z4 h-100">
             <div class="card-header bg-gray rounded-0 text-white py-1 px-2 fw-500">
                 PMP
@@ -94,3 +75,4 @@
     </div>
 </div>
 <app-footer></app-footer>
+

@@ -8,11 +8,11 @@ declare global {
 
 window.reactReportData = window.reactReportData || {};
 @Component({
-    selector: 'app-user-details',
-    templateUrl: './user-details.component.html',
-    styleUrls: ['./user-details.component.css']
+    selector: 'app-patient-details',
+    templateUrl: './patient-details.component.html',
+    styleUrls: ['./patient-details.component.css']
 })
-export class UserDetailsComponent {
+export class PatientDetailsComponent {
     shwrpt = false;
     showMaps = false;
     showPMP = false;
@@ -23,20 +23,20 @@ export class UserDetailsComponent {
         lng: 70.7512555
     };
     zoom = 6;
-    alertsList: any;
+    alertsList: any[] = [];
     alertsCount: any;
     alerts: any;
-    NotOurPrescription: any[];
-    NotOurPharmacy: any[];
-    UnexpectedPatient: any[];
-    HighDose: any[];
-    Identical: any[];
-    MultiplePrescribers: any[];
-    OverlappingPharmacy: any[];
-    OverlappingPrescriber: any[];
-    LabTestDiscrepancy: any[];
-    WriteFillGap: any[];
-    PrivatePay: any[];
+    NotOurPrescription: any[] = [];
+    NotOurPharmacy: any[] = [];
+    UnexpectedPatient: any[] = [];
+    HighDose: any[] = [];
+    Identical: any[] = [];
+    MultiplePrescribers: any[] = [];
+    OverlappingPharmacy: any[] = [];
+    OverlappingPrescriber: any[] = [];
+    LabTestDiscrepancy: any[] = [];
+    WriteFillGap: any[] = [];
+    PrivatePay: any[] = [];
     alertstitle: string;
     numAlerts: number;
     constructor(private api: ApiService, private route: ActivatedRoute) {
@@ -111,8 +111,59 @@ export class UserDetailsComponent {
                 this.numAlerts = this.alerts.length;
                 console.log(modAlerts);
                 console.log(this.alerts);
+                
+                this.alertsList = [];
+                if (this.NotOurPrescription.length > 0) {
+                    this.alertsList.push({
+                        alerts: this.NotOurPrescription,
+                        typeString: this.NotOurPrescription[0].typeString || 'Not Our Prescriber',
+                        count: this.NotOurPrescription.length
+                    });
+                }
+                if (this.NotOurPharmacy.length > 0) {
+                    this.alertsList.push({
+                        alerts: this.NotOurPharmacy,
+                        typeString: this.NotOurPharmacy[0].typeString || 'Not Our Pharmacy',
+                        count: this.NotOurPharmacy.length
+                    });
+                }
+                if (this.HighDose.length > 0) {
+                    this.alertsList.push({
+                        alerts: this.HighDose,
+                        typeString: this.HighDose[0].typeString || 'High Dose',
+                        count: this.HighDose.length
+                    });
+                }
+                if (this.MultiplePrescribers.length > 0) {
+                    this.alertsList.push({
+                        alerts: this.MultiplePrescribers,
+                        typeString: 'Multiple Prescribers (Same Category)',
+                        count: this.MultiplePrescribers.length
+                    });
+                }
+                if (this.OverlappingPrescriber.length > 0) {
+                    this.alertsList.push({
+                        alerts: this.OverlappingPrescriber,
+                        typeString: 'Overlapping Prescriber (Different Category)',
+                        count: this.OverlappingPrescriber.length
+                    });
+                }
+                if (this.OverlappingPharmacy.length > 0) {
+                    this.alertsList.push({
+                        alerts: this.OverlappingPharmacy,
+                        typeString: this.OverlappingPharmacy[0].typeString || 'Overlapping Pharmacies',
+                        count: this.OverlappingPharmacy.length
+                    });
+                }
+                if (this.WriteFillGap.length > 0) {
+                    this.alertsList.push({
+                        alerts: this.WriteFillGap,
+                        typeString: this.WriteFillGap[0].typeString || 'Write/Fill Gap',
+                        count: this.WriteFillGap.length
+                    });
+                }
+                
                 var multiple = "";
-
                 if (this.numAlerts != undefined) {
                     if (this.numAlerts > 1 || this.numAlerts == 0) multiple = "s";
                     this.alertstitle = this.numAlerts + " Alert" + multiple;
@@ -126,3 +177,4 @@ export class UserDetailsComponent {
 
     }
 }
+

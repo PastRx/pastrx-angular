@@ -8,7 +8,7 @@ import { AuthGuard } from '@auth0/auth0-angular';
 import { LoginComponent } from './auth/login/login.component';
 import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
 import { AddPatientComponent } from './dashboard/add-patient/add-patient.component';
-import { UserDetailsComponent } from './dashboard/user-details/user-details.component';
+import { PatientDetailsComponent } from './dashboard/patient-details/patient-details.component';
 import {AdminDashboardComponent} from './administration/admin-dashboard/admin-dashboard.component';
 import {AddUserComponent} from './administration/add-user/add-user.component';
 import {UserListComponent} from './administration/user-list/user-list.component';
@@ -33,8 +33,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'user-details',
-    component: UserDetailsComponent,
+    path: 'patient-details',
+    component: PatientDetailsComponent,
     canActivate: [AuthGuard],
   },
   {

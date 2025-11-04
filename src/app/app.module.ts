@@ -34,7 +34,7 @@ import {MatInputModule} from '@angular/material/input';
 import { DatePipe } from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { UserDetailsComponent } from './dashboard/user-details/user-details.component';
+import { PatientDetailsComponent } from './dashboard/patient-details/patient-details.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { PracticeSettingsComponent } from './admin/practice-settings/practice-settings.component';
 import {AddUserComponent} from './administration/add-user/add-user.component';
@@ -69,7 +69,7 @@ import{ AlertSettingsComponent} from './admin/alert-settings/alert-settings.comp
     UserDashboardComponent,
     HeaderComponent,
     AddPatientComponent,
-    UserDetailsComponent,
+    PatientDetailsComponent,
     AdminDashboardComponent,
     AddUserComponent,
     UserListComponent,

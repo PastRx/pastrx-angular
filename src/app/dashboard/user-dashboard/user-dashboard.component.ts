@@ -68,8 +68,8 @@ export class UserDashboardComponent {
     // });
   }
   setDetailsUser(usrC) {
-    // Navigate to user-details with query parameters instead of using localStorage
-    this.router.navigate(['/user-details'], {
+    // Navigate to patient-details with query parameters instead of using localStorage
+    this.router.navigate(['/patient-details'], {
       queryParams: {
         patientId: usrC.patientId,
         appointmentId: usrC.id
