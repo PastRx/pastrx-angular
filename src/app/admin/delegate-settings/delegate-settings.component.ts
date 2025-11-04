@@ -3,11 +3,10 @@ import { DatePipe } from '@angular/common';
 import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-require('stream');
+
 
 declare var PASTRX: any;
 declare var gapi: any;
-const fs = require('fs');
 
 @Component({
   selector: 'app-delegate-settings',
@@ -21,18 +20,7 @@ export class DelegateSettingsComponent {
   user: any;
   idToUse: any;
   delegates=[];
-  ddDelegates=[];
-  delegateList = [];
-  delegate = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    practiceId: '',
-    active : true,
-    loginAllowed: true,
-    ownerId: ''
   
-  };
   constructor(private api: ApiService,private datePipe: DatePipe, private router: Router,private http: HttpClient   ) { }
  
   ngOnInit() {
@@ -108,21 +96,6 @@ export class DelegateSettingsComponent {
 
   uploadDelegateFile(){}
   updateDelegateList(){
-    this.delegates = [];
-    var delegateNames = [];
-    console.log(this.delegatesList);
-    for (var i = 0; i < this.delegatesList.length; i++) {
-        if (this.delegatesList[i]) {
-            delegateNames.push(this.delegatesList[i].firstName + " " + this.delegatesList[i].lastName);
-            this.delegates.push(this.delegatesList[i].id)
-        }
-    }
-
-   this.api.updateDelegates({
-      'delegateList': this.delegates,
-      'masquerade': PASTRX.masquerade
-  });
-
 
   }
   moveToDelegateList(){
@@ -133,7 +106,7 @@ export class DelegateSettingsComponent {
         console.log(this.userList[i]);
         this.userList[i].isChecked=false;
         this.delegatesList.push(this.userList[i]);
-        console.log(this.delegatesList);
+        
         
        
         this.userList.splice(i,1);
@@ -157,71 +130,11 @@ export class DelegateSettingsComponent {
     if (file) {
 
         this.fileName = file.name;
-        var StringReader = require('StringReader');
-        var BufferedReader = require('BufferedReader');
-        var sr = new StringReader(file);
-        var reader = new BufferedReader(sr);
-        let responseMessages = [];
-        let providerDelegatedListMap = [];
-        let total = 0;
 
-        try {
-          let provider = null;
-          var line = reader.readLine();
-          while (line != null) {
-              try {
-                   let strarray = line.split(",");
-
-                  if(strarray.length > 0) {
-                      // Handle line of csv file
-
-                      let providerFirstname = strarray[0]; // Provider First Name
-                      let providerLastname = strarray[1]; // Provider Last Name
-                      let providerEmail = strarray[2];
-
-                      let i = 3;
-                      while (i < strarray.length) {
-                        // Set Provider Delegates
-                        let delegateFirstname = strarray[i];
-                        let delegateLastname = strarray[i + 1];
-                        let delegateEmail = strarray[i + 2];
-                        i += 3;
-                    
-                        
-                                        this.delegate.firstName = delegateFirstname;
-                                        this.delegate.lastName=delegateLastname;
-                                        this.delegate.practiceId = PASTRX.practiceId;
-                                        this.delegate.active = true;
-                                        this.delegate.loginAllowed=true;
-                                        this.delegate.email = delegateEmail;
-                                        this.delegate.ownerId = PASTRX.masquerade;
-
-                                        total++;
-                                        this.delegateList.push(this.delegate);
-
-
-                  }             
-                  
-
-                      
-              } 
-              line = reader.readLine();
-             
-              //lineCount++;
-          }
-
-       
-
-      catch(Exception){}
-
-        
-     }
-      const formData = new FormData();
+        const formData = new FormData();
 
         this.api.uploadDelegatesCSV({
-          'file': file,
-          'masquerade':PASTRX.masquerade,
-          'user': this.delegateList
+          'data': formData
        }).subscribe({
              next: (resp) => {
                console.log(resp);
@@ -230,8 +143,6 @@ export class DelegateSettingsComponent {
              error: (err) => console.log(err),
            });
         
-    }catch(Exception){}
-
+    }
 }                  
-}
 }
