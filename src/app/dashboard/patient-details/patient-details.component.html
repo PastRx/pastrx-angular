@@ -42,7 +42,7 @@
         </div>
     </div>
 </div>
-<div class="row m-0" [hidden]="showAlerts" [style.height]="showMaps ? 'calc(100vh - 110px)' : 'auto'">
+<div class="row m-0" [hidden]="showAlerts" [style.height]="showMaps ? 'calc(100vh - 70px - 30px)' : 'auto'" style="margin-bottom: 0;">
     <app-patient-map class="col-6 p-2" [ngClass]="{'col-12':showMaps,'col-6':!showMaps}" [showMaps]="showMaps" (showMapsChange)="showMaps = $event" [reportData]="reportData" [patientName]="patientName" [hidden]="showPMP"></app-patient-map>
     <div class="col-6 p-2" [ngClass]="{'col-12':showPMP,'col-6':!showPMP}" [hidden]="showMaps">
         <div class="card rounded-0 mat-elevation-z4 h-100">
