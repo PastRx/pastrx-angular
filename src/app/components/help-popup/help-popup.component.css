@@ -1,0 +1,38 @@
+.modal-fullscreen-padded {
+  width: calc(100% - 40px);
+  max-width: none;
+  height: calc(100% - 40px);
+  margin: 20px auto;
+}
+
+.modal-fullscreen-padded .modal-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-fullscreen-padded .modal-body {
+  flex: 1;
+  overflow-y: auto;
+  max-height: none;
+}
+
+.help-content-image {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.help-content-html {
+  padding: 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+}
+
+.modal-title {
+  font-weight: 500;
+}
+

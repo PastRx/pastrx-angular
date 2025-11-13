@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxsModule } from '@ngxs/store';
+import { HelpState } from './store/help.state';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import json from 'highlight.js/lib/languages/json';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -24,6 +26,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDividerModule } from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
 import { HeaderComponent } from './common/header/header.component';
 import {MatIconModule} from '@angular/material/icon';
@@ -60,6 +63,7 @@ import { PatientBenzosGraphComponent } from './dashboard/patient-details/patient
 import { PatientStimsGraphComponent } from './dashboard/patient-details/patient-graphs/patient-stims-graph/patient-stims-graph.component';
 import { PatientPrescribersGraphComponent } from './dashboard/patient-details/patient-graphs/patient-prescribers-graph/patient-prescribers-graph.component';
 import { PatientPharmaciesGraphComponent } from './dashboard/patient-details/patient-graphs/patient-pharmacies-graph/patient-pharmacies-graph.component'
+import { HelpPopupComponent } from './components/help-popup/help-popup.component'
 
 @NgModule({
   declarations: [
@@ -94,13 +98,15 @@ import { PatientPharmaciesGraphComponent } from './dashboard/patient-details/pat
     PatientBenzosGraphComponent,
     PatientStimsGraphComponent,
     PatientPrescribersGraphComponent,
-    PatientPharmaciesGraphComponent
+    PatientPharmaciesGraphComponent,
+    HelpPopupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    NgxsModule.forRoot([HelpState]),
     FormsModule,
     HighlightModule,
     FontAwesomeModule,
@@ -126,7 +132,8 @@ import { PatientPharmaciesGraphComponent } from './dashboard/patient-details/pat
     MatDatepickerModule,
     MatNativeDateModule,
     MatDividerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     DatePipe,
