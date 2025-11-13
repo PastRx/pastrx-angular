@@ -11,7 +11,7 @@
                 {{alertstitle}}
                 <mat-icon aria-hidden="false" class="hicon float-end ms-2" [hidden]="showAlerts == true" fontIcon="web_asset" (click)="showAlerts = true;"></mat-icon>
                 <mat-icon aria-hidden="false" class="hicon float-end ms-2" [hidden]="showAlerts == false" fontIcon="close" (click)="showAlerts = false;"></mat-icon>
-                <mat-icon aria-hidden="false" class="hicon float-end" fontIcon="help"></mat-icon>
+                <mat-icon aria-hidden="false" class="hicon float-end" fontIcon="help" (click)="openAlertsHelp()" style="cursor: pointer;" title="Help" data-toggle="modal" data-target="#helpModal"></mat-icon>
             </div>
             <div class="card-body">
                 <div *ngIf="loadingAlerts" class="text-center py-3">                    
@@ -50,7 +50,7 @@
                 PMP
                 <mat-icon aria-hidden="false" class="hicon float-end ms-2" [hidden]="showPMP == true" fontIcon="web_asset" (click)="showPMP = true;"></mat-icon>
                 <mat-icon aria-hidden="false" class="hicon float-end ms-2" [hidden]="showPMP == false" fontIcon="close" (click)="showPMP = false;"></mat-icon>
-                <mat-icon aria-hidden="false" class="hicon float-end" fontIcon="help"></mat-icon>
+                <mat-icon aria-hidden="false" class="hicon float-end" fontIcon="help" (click)="openPMPHelp()" style="cursor: pointer;" title="Help" data-toggle="modal" data-target="#helpModal"></mat-icon>
             </div>
             <div class="card-body" *ngIf="shwrpt">
                 <iframe src="assets/report/index.html" id="pastrx-report-container" scrolling="yes" horizontalscrolling="no" verticalscrolling="yes" style="border:none; width:100%; height: 100%; -ms-overflow-style: -ms-autohiding-scrollbar;"></iframe>
@@ -59,4 +59,5 @@
     </div>
 </div>
 <app-footer></app-footer>
+<app-help-popup></app-help-popup>
 

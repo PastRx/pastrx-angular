@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../api.service';
+import { Store } from '@ngxs/store';
+import { SetHelpData } from '../../store/help.state';
 // declare var PASTRX: any;
 declare global {
     interface Window { 
@@ -41,7 +43,7 @@ export class PatientDetailsComponent {
     PrivatePay: any[] = [];
     alertstitle: string;
     numAlerts: number;
-    constructor(private api: ApiService, private route: ActivatedRoute) {
+    constructor(private api: ApiService, private route: ActivatedRoute, private store: Store) {
         // gapi.client.pastAPI.getPastReportJson({
         //     'patientId': PASTRX.selectedPid,
         //     'masquerade': PASTRX.masquerade,
@@ -258,6 +260,14 @@ export class PatientDetailsComponent {
                 }
             }
         });
+    }
+
+    openAlertsHelp(): void {
+        this.store.dispatch(new SetHelpData('Alerts', 'alerts.png'));
+    }
+
+    openPMPHelp(): void {
+        this.store.dispatch(new SetHelpData('PMP', 'pmpreport.png'));
     }
 }
 
